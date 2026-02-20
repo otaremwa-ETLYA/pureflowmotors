@@ -1,0 +1,27 @@
+name: pureflowmotors
+description: "A Flutter app for motorcycle financing with hardcoded loan options."
+publish_to: 'none' # private package
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.8.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  intl: ^0.18.0 # <-- added for UGX currency formatting
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Uncomment and add image assets if you use local bike images in the future
+  # assets:
+  #   - assets/images/
