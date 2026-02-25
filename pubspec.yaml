@@ -1,6 +1,6 @@
 name: pureflowmotors
 description: "A Flutter app for motorcycle financing with hardcoded loan options."
-publish_to: 'none' # private package
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,16 +12,44 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  intl: ^0.18.0 # <-- added for UGX currency formatting
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^5.0.0
+
+  # ✅ package goes here ONLY
+  flutter_launcher_icons: ^0.13.1
+
+
+# ✅ configuration goes OUTSIDE dev_dependencies
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icon/app_icon.png"
+
 
 flutter:
   uses-material-design: true
 
-  # Uncomment and add image assets if you use local bike images in the future
-  # assets:
-  #   - assets/images/
+  assets:
+    - lib/assets/bikes/
+
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: lib/assets/fonts/Poppins-Light.ttf
+        - asset: lib/assets/fonts/Poppins-Regular.ttf
+        - asset: lib/assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: lib/assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/Poppins-Bold.ttf
+          weight: 700
+
+    - family: Inter
+      fonts:
+        - asset: lib/assets/fonts/Inter.ttf

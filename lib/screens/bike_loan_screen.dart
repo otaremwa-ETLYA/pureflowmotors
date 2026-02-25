@@ -12,7 +12,8 @@ class BikeLoanScreen extends StatefulWidget {
 }
 
 class _BikeLoanScreenState extends State<BikeLoanScreen> {
-  
+
+  late PageController bikePageController;
   bool freezeFiltering = false;
 
   Bike? selectedBike;
@@ -26,6 +27,22 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
       selectedWeeklyPayment != null;
 
   bool get hasFullSelection => isFullMatch;
+
+  @override
+void initState() {
+  super.initState();
+
+  bikePageController = PageController(
+    viewportFraction: 0.7,
+    initialPage: 1000, // fake infinite start
+  );
+}
+
+@override
+void dispose() {
+  bikePageController.dispose();
+  super.dispose();
+}
 
   // ================================
   // FILTER LOGIC
@@ -80,32 +97,150 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue[800],
-        centerTitle: true,
-        title: Text(
-          "Asset Financing",
-          style: const TextStyle(
-            fontFamily: 'FrizQuadrata',
-            fontWeight: FontWeight.bold,
-            fontSize: 40,
-            color: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+        //centerTitle: true,
+       title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+
+          Text(
+            "Asset Financing",
+            style: TextStyle(
+              fontFamily: 'Poppins-Bold',
+              fontWeight: FontWeight.bold,
+              fontSize: 22, // AppBar works better around 20–24
+              color: Colors.white,
+            ),
           ),
-        ),
+
+          SizedBox(height: 2),
+
+          Text(
+            "Kingdom Initiatives Transforming Communities",
+            style: TextStyle(
+              fontFamily: 'Poppins-Regular',
+              fontWeight: FontWeight.w400,
+              fontSize: 11,
+              color: Colors.white70,
+            ),
+          ),
+        ],
+      ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+
+            SizedBox(
+            height: 220,
+
+            child: PageView.builder(
+
+              controller: bikePageController,
+
+              onPageChanged: (index) {
+
+                final bikeIndex = index % bikes.length;
+
+                setState(() {
+
+                  selectedBike = bikes[bikeIndex];
+
+                  selectedDownPayment = null;
+                  selectedDuration = null;
+                  selectedWeeklyPayment = null;
+
+                  freezeFiltering = false;
+
+                });
+
+              },
+
+              itemBuilder: (context,index){
+
+                final bike = bikes[index % bikes.length];
+
+                final isSelected =
+                    selectedBike?.name == bike.name;
+
+                return AnimatedContainer(
+
+                  duration: const Duration(milliseconds:300),
+
+                  margin: EdgeInsets.symmetric(
+                    horizontal:10,
+                    vertical: isSelected ? 10 : 30,
+                  ),
+
+                  decoration: BoxDecoration(
+
+                    borderRadius: BorderRadius.circular(16),
+
+                    boxShadow: [
+
+                      BoxShadow(
+                        color: const Color.fromARGB(0, 47, 44, 44),
+                        blurRadius: 8,
+                      )
+                    ],
+                  ),
+
+                  child: ClipRRect(
+
+                    borderRadius: BorderRadius.circular(16),
+
+                    child: Stack(
+
+                      fit: StackFit.expand,
+
+                      children: [
+
+                        Image.asset(
+                          bike.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          padding: const EdgeInsets.all(8),
+
+                          color: const Color.fromARGB(0, 255, 255, 255),
+
+                          // child: Text(
+
+                          //   bike.name,
+
+                          //   style: const TextStyle(
+                          //     color: Color.fromARGB(255, 22, 22, 22),
+                          //     fontFamily: 'FrizQuadrata',
+                          //     fontWeight: FontWeight.bold,
+                          //     fontSize:12,
+                          //   ),
+                          // ),
+                        )
+                        
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          const SizedBox(height:20),
             // ======================
             // BIKE DROPDOWN (TOP)
             // ======================
             Text(
               "Select Bike",
               style: TextStyle(
-                fontFamily: 'Avenir', // Avenir Light
-                fontWeight: FontWeight.w300,
-                fontSize: 16,
+                fontFamily: 'Poppins-Regular', // Avenir Light
+                fontWeight: FontWeight.w400,
+                fontSize: 10,
                 color: Colors.black87,
               ),
             ),
@@ -113,9 +248,16 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: const Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.blue[200]!),
+                border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+                boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
               ),
               child: DropdownButton<Bike>(
                 isExpanded: true,
@@ -123,8 +265,8 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                 hint: Text(
                   "Choose a bike",
                   style: TextStyle(
-                    fontFamily: 'Avenir',
-                    fontWeight: FontWeight.w300,
+                    fontFamily: 'Poppins-SemiBold',
+                    //fontWeight: FontWeight.w300,
                     color: Colors.black54,
                   ),
                 ),
@@ -135,8 +277,8 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                     child: Text(
                       bike.name,
                       style: const TextStyle(
-                        fontFamily: 'Avenir',
-                        fontWeight: FontWeight.w300,
+                        fontFamily: 'Poppins-SemiBold',
+                        //fontWeight: FontWeight.w300,
                       ),
                     ),
                   );
@@ -147,7 +289,6 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
 
                     selectedBike = bike;
 
-                    // Reset ALL selections
                     selectedDownPayment = null;
                     selectedDuration = null;
                     selectedWeeklyPayment = null;
@@ -155,7 +296,16 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                     // VERY IMPORTANT
                     freezeFiltering = false;
 
-                  });
+                    // move gallery
+                    final index = bikes.indexOf(bike!);
+
+                    bikePageController.animateToPage(
+                      1000 + index,
+                      duration: const Duration(milliseconds:400),
+                      curve: Curves.easeInOut,
+                    );
+
+                    });
 
                 },
               ),
@@ -175,11 +325,11 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Down Payment",
+                          "Down Payment(ugx)",
                           style: TextStyle(
-                            fontFamily: 'Avenir',
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
+                            fontFamily: 'Poppins-Regular',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
                             color: Colors.black87,
                           ),
                         ),
@@ -187,18 +337,27 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
-                            color: Colors.blue[50],
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.blue[200]!),
+                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                           ),
                           child: DropdownButton<int>(
                             isExpanded: true,
                             underline: const SizedBox(),
+                            icon: const SizedBox.shrink(),
                             hint: Text(
                               "Select",
                               style: TextStyle(
-                                fontFamily: 'Avenir',
-                                fontWeight: FontWeight.w300,
+                                fontFamily: 'Poppins-SemiBold',
+                                fontWeight: FontWeight.w600,
                                 color: Colors.black54,
                               ),
                             ),
@@ -209,8 +368,8 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                                 child: Text(
                                   formatUGX(dp),
                                   style: const TextStyle(
-                                    fontFamily: 'Avenir',
-                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Poppins-SemiBold',
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               );
@@ -254,11 +413,11 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Duration",
+                          "Duration(Years)",
                           style: TextStyle(
-                            fontFamily: 'Avenir',
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
+                            fontFamily: 'Poppins-Regular',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
                             color: Colors.black87,
                           ),
                         ),
@@ -266,18 +425,27 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
-                            color: Colors.blue[50],
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.blue[200]!),
+                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                           ),
                           child: DropdownButton<int>(
                             isExpanded: true,
                             underline: const SizedBox(),
+                            icon: const SizedBox.shrink(),
                             hint: Text(
                               "Select",
                               style: TextStyle(
-                                fontFamily: 'Avenir',
-                                fontWeight: FontWeight.w300,
+                                fontFamily: 'Poppins-Semibold',
+                                fontWeight: FontWeight.w600,
                                 color: Colors.black54,
                               ),
                             ),
@@ -288,8 +456,8 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                                 child: Text(
                                   "${(dur / 52).toStringAsFixed(1)} yrs",
                                   style: const TextStyle(
-                                    fontFamily: 'Avenir',
-                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Poppins-Semibold',
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               );
@@ -322,6 +490,7 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                       ],
                     ),
                   ),
+                  
 
                   const SizedBox(width: 12),
 
@@ -331,11 +500,11 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Weekly Payment",
+                          "Weekly Payment(ugx)",
                           style: TextStyle(
-                            fontFamily: 'Avenir',
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
+                            fontFamily: 'Poppins-Regular',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
                             color: Colors.black87,
                           ),
                         ),
@@ -343,18 +512,28 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
-                            color: Colors.blue[50],
+                            color: const Color.fromARGB(255, 254, 254, 254),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.blue[200]!),
+                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                           ),
                           child: DropdownButton<double>(
                             isExpanded: true,
                             underline: const SizedBox(),
+                            icon: const SizedBox.shrink(),
+
                             hint: Text(
                               "Select",
                               style: TextStyle(
-                                fontFamily: 'Avenir',
-                                fontWeight: FontWeight.w300,
+                                fontFamily: 'Poppins-Semibold',
+                                fontWeight: FontWeight.w600,
                                 color: Colors.black54,
                               ),
                             ),
@@ -365,8 +544,8 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
                                 child: Text(
                                   formatUGX(wp.toInt()),
                                   style: const TextStyle(
-                                    fontFamily: 'Avenir',
-                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Poppins-Semibold',
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               );
@@ -408,66 +587,85 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
             // SUMMARY CARD
             // ======================
             if (hasFullSelection)
+              Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              /// HEADER OUTSIDE
+              const Text(
+                "Loan Summary",
+                style: TextStyle(
+                  fontFamily: 'Poppins-Bold',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black87, // change if needed
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              /// CONTAINER BELOW HEADER
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(174, 119, 178, 245),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  color: const Color.fromARGB(255, 16, 92, 177),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 160, 144, 249),
+                  ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Text(
-                      "Loan Summary",
+                      "Bike: ${selectedBike!.name}",
                       style: const TextStyle(
-                        fontFamily: 'FrizQuadrata',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontFamily: 'Poppins-Medium',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Text("Bike: ${selectedBike!.name}",
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
-                    Text("Down Payment: ${formatUGX(selectedDownPayment!)}",
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
+                    const SizedBox(height: 6),
+                      
                     Text(
-                        "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
+                      "Down Payment: ${formatUGX(selectedDownPayment!)}",
+                      style: const TextStyle(
+                        fontFamily: 'Poppins-Light',
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
                     Text(
-                        "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
+                      "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
+                      style: const TextStyle(
+                        fontFamily: 'Poppins-Light',
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+
+                    Text(
+                      "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
+                      style: const TextStyle(
+                        fontFamily: 'Poppins-Light',
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
                   ],
                 ),
               ),
+            ],
+          )
           ],
         ),
       ),

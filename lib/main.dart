@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/bike_loan_screen.dart';
+import '../screens/main_navigation.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +15,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Motorcycle Loans',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+
+    // OFF WHITE BACKGROUND
+    scaffoldBackgroundColor: const Color.fromARGB(255, 217, 217, 217),
+
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+
+      backgroundColor: Color.fromARGB(255, 16, 92, 177),
+
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white70,
+
+      selectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      home: const BikeLoanScreen(),
+      home: const MainNavigation(),
     );
   }
 }
