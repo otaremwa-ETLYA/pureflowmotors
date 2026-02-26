@@ -28,14 +28,32 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
 
   bool get hasFullSelection => isFullMatch;
 
-  @override
+//late PageController bikePageController;
+
+@override
 void initState() {
+
   super.initState();
 
   bikePageController = PageController(
     viewportFraction: 0.7,
-    initialPage: 1000, // fake infinite start
+    initialPage: 1000, // fake infinite scroll
   );
+
+  // ⭐ VERY IMPORTANT
+  // Select first bike AFTER screen builds
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    final bikeIndex = 1000 % bikes.length;
+
+    setState(() {
+
+      selectedBike = bikes[bikeIndex];
+
+    });
+
+  });
+
 }
 
 @override
@@ -95,7 +113,7 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 16, 92, 177),
         //centerTitle: true,
@@ -140,95 +158,102 @@ void dispose() {
 
             child: PageView.builder(
 
-              controller: bikePageController,
+            controller: bikePageController,
 
-              onPageChanged: (index) {
+            onPageChanged: (index) {
 
-                final bikeIndex = index % bikes.length;
+              final bikeIndex = index % bikes.length;
 
-                setState(() {
+              setState(() {
 
-                  selectedBike = bikes[bikeIndex];
+                selectedBike = bikes[bikeIndex];
 
-                  selectedDownPayment = null;
-                  selectedDuration = null;
-                  selectedWeeklyPayment = null;
+                selectedDownPayment = null;
+                selectedDuration = null;
+                selectedWeeklyPayment = null;
 
-                  freezeFiltering = false;
+                freezeFiltering = false;
 
-                });
+              });
 
-              },
+            },
 
-              itemBuilder: (context,index){
+            itemBuilder: (context,index){
 
-                final bike = bikes[index % bikes.length];
+              final bike = bikes[index % bikes.length];
 
-                final isSelected =
-                    selectedBike?.name == bike.name;
+              final isSelected =
+                  selectedBike?.name == bike.name;
 
-                return AnimatedContainer(
+              return AnimatedContainer(
+
+                duration: const Duration(milliseconds:300),
+
+                margin: EdgeInsets.symmetric(
+                  horizontal:10,
+                  vertical: isSelected ? 10 : 30,
+                ),
+
+                // decoration: BoxDecoration(
+
+                //   borderRadius: BorderRadius.circular(16),
+
+                //   boxShadow: [
+
+                //     if (isSelected)
+                //       BoxShadow(
+                //         color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.20),
+                //         blurRadius: 12,
+                //         offset: const Offset(0,4),
+                //       )
+
+                //   ],
+                // ),
+
+                // ⭐ SCALE + OPACITY ADDED HERE
+                child: AnimatedScale(
 
                   duration: const Duration(milliseconds:300),
 
-                  margin: EdgeInsets.symmetric(
-                    horizontal:10,
-                    vertical: isSelected ? 10 : 30,
-                  ),
+                  scale: isSelected ? 1.0 : 0.50,
 
-                  decoration: BoxDecoration(
+                  child: AnimatedOpacity(
 
-                    borderRadius: BorderRadius.circular(16),
+                    duration: const Duration(milliseconds:300),
 
-                    boxShadow: [
+                    opacity: isSelected ? 1.0 : 0.65,
 
-                      BoxShadow(
-                        color: const Color.fromARGB(0, 47, 44, 44),
-                        blurRadius: 8,
-                      )
-                    ],
-                  ),
+                    child: ClipRRect(
 
-                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
 
-                    borderRadius: BorderRadius.circular(16),
+                      child: Stack(
 
-                    child: Stack(
+                        fit: StackFit.expand,
 
-                      fit: StackFit.expand,
+                        children: [
 
-                      children: [
+                          Image.asset(
+                            bike.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
 
-                        Image.asset(
-                          bike.imageUrl,
-                          fit: BoxFit.cover,
-                        ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            padding: const EdgeInsets.all(8),
 
-                        Container(
-                          alignment: Alignment.bottomCenter,
-                          padding: const EdgeInsets.all(8),
+                            color: Colors.transparent,
 
-                          color: const Color.fromARGB(0, 255, 255, 255),
+                          )
 
-                          // child: Text(
-
-                          //   bike.name,
-
-                          //   style: const TextStyle(
-                          //     color: Color.fromARGB(255, 22, 22, 22),
-                          //     fontFamily: 'FrizQuadrata',
-                          //     fontWeight: FontWeight.bold,
-                          //     fontSize:12,
-                          //   ),
-                          // ),
-                        )
-                        
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+        );
+      },
+    ),
           ),
 
           const SizedBox(height:20),
