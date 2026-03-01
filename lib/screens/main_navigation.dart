@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 import 'bike_loan_screen.dart';
+import '../screens/active_loan_screen.dart';
+import '../screens/payments_screen.dart'; // ✅ ADD THIS
 
-// Temporary placeholder screens
-class ActiveLoanScreen extends StatelessWidget {
-  const ActiveLoanScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Active Loans"));
-  }
-}
-
-class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Payments"));
-  }
-}
-
+// ======================
+// CHAT SCREEN (KEEP)
+// ======================
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Chat"));
+    return const Center(
+      child: Text("Chat"),
+    );
   }
 }
 
@@ -33,64 +21,97 @@ class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
 
   @override
-  State<MainNavigation> createState() => _MainNavigationState();
+  State<MainNavigation> createState() =>
+      _MainNavigationState();
 }
 
-class _MainNavigationState extends State<MainNavigation> {
+class _MainNavigationState
+    extends State<MainNavigation> {
+
   int selectedIndex = 0;
 
-  final List<Widget> screens = const [
+  // REMOVE const because PaymentsScreen loads prefs
+  final List<Widget> screens = [
+
     // TAB 1
-    BikeLoanScreen(),
+    const BikeLoanScreen(),
 
     // TAB 2
-    ActiveLoanScreen(),
+    const ActiveLoanScreen(),
 
-    // TAB 3
-    PaymentScreen(),
+    // TAB 3 ✅ REAL PAYMENTS SCREEN
+    const PaymentsScreen(),
 
     // TAB 4
-    ChatScreen(),
+    const ChatScreen(),
   ];
 
   void onTabTapped(int index) {
+
     setState(() {
+
       selectedIndex = index;
+
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body: screens[selectedIndex],
 
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar:
+          BottomNavigationBar(
+
         currentIndex: selectedIndex,
+
         onTap: onTabTapped,
 
-        type: BottomNavigationBarType.fixed,
+        type:
+            BottomNavigationBarType
+                .fixed,
 
         showUnselectedLabels: true,
 
         items: const [
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance),
+
+            icon:
+                Icon(Icons.account_balance),
+
             label: "Loans",
+
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.motorcycle),
+
+            icon:
+                Icon(Icons.motorcycle),
+
             label: "Active",
+
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.payments),
+
+            icon:
+                Icon(Icons.payments),
+
             label: "Payments",
+
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+
+            icon:
+                Icon(Icons.chat),
+
             label: "Chat",
+
           ),
         ],
       ),

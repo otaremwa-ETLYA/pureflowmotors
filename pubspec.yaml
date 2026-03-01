@@ -11,8 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
   cupertino_icons: ^1.0.8
   intl: ^0.18.0
+
 
 dev_dependencies:
   flutter_test:
@@ -20,11 +23,9 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
 
-  # ✅ package goes here ONLY
   flutter_launcher_icons: ^0.13.1
 
 
-# ✅ configuration goes OUTSIDE dev_dependencies
 flutter_launcher_icons:
   android: true
   ios: true
@@ -36,6 +37,7 @@ flutter:
 
   assets:
     - lib/assets/bikes/
+    - lib/assets/icon/app_icon.png
 
 
   fonts:

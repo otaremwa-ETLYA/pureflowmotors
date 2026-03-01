@@ -263,7 +263,7 @@ void dispose() {
             Text(
               "Select Bike",
               style: TextStyle(
-                fontFamily: 'Poppins-Regular', // Avenir Light
+                fontFamily: 'Poppins-Regular',
                 fontWeight: FontWeight.w400,
                 fontSize: 10,
                 color: Colors.black87,
