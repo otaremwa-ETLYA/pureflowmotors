@@ -485,8 +485,9 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
               "Log in to Track Your Journey to Ownership",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins-light',
+                fontSize: 22,
+                fontWeight: FontWeight.w300,
               ),
             ),
 
@@ -541,8 +542,10 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
                   : const Text(
                       "Login",
                       style: TextStyle(
+                        fontFamily: 'Poppins-Bold',
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
             ),
