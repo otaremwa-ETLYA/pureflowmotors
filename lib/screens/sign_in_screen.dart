@@ -140,11 +140,24 @@ class _SignInScreenState extends State<SignInScreen> {
           color: Colors.white,
         ),),
         backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+        // ✅ Make back arrow white
+        iconTheme: const IconThemeData(
+        color: Colors.white, // arrow color
+  ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+
+            // ✅ APP ICON IMAGE
+        const SizedBox(height: 10),
+        Image.asset(
+          'lib/assets/icon/app_icon.png',
+          height: 120,
+        ),
+        const SizedBox(height: 30),
+
             // BIKE NUMBER
             TextField(
               controller: bikeController,
