@@ -79,7 +79,7 @@ class _MainNavigationState extends State<MainNavigation> {
               return const Center(child: CircularProgressIndicator());
             }
             final prefs = snapshot.data!;
-            final name = prefs.getString("name") ?? "";
+            //final name = prefs.getString("name") ?? "";
             final bike = prefs.getString("bike") ?? "";
             return ActiveLoanScreen(bikeNumber: bike);
           },
