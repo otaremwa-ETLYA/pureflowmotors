@@ -29,99 +29,114 @@ class _SignUpScreenState extends State<SignUpScreen> {
   // ============================
 
   Future<void> signUp() async {
+  setState(() {
+    bikeError = null;
+  });
+
+  String bike = bikeController.text.trim();
+  String pin = pinController.text.trim();
+  String confirmPin = confirmPinController.text.trim();
+
+  if (bike.isEmpty || pin.isEmpty || confirmPin.isEmpty) {
     setState(() {
-      bikeError = null;
+      bikeError = "All fields required";
     });
+    return;
+  }
+  // ✅ Require full bike number (minimum 8 characters)
+if (bike.length < 8) {
+  setState(() {
+    bikeError = "Enter full Bike Number.";
+  });
+  return;
+}
 
-    String bike = bikeController.text.trim();
-    String pin = pinController.text.trim();
-    String confirmPin = confirmPinController.text.trim();
+  if (pin != confirmPin) {
+    setState(() {
+      bikeError = "Pins do not match";
+    });
+    return;
+  }
 
-    if (bike.isEmpty || pin.isEmpty || confirmPin.isEmpty) {
-      setState(() {
-        bikeError = "All fields required";
-      });
-      return;
-    }
+  setState(() => loading = true);
 
-    if (pin != confirmPin) {
-      setState(() {
-        bikeError = "Pins do not match";
-      });
-      return;
-    }
+  try {
+    // Normalize user input
+    String enteredBike = bike.toLowerCase().trim();
 
-    setState(() => loading = true);
+    // ======================
+    // 1️⃣ CHECK IF BIKE EXISTS IN SHEET (COLUMN C)
+    // ======================
 
-    try {
-      // ======================
-      // 1️⃣ CHECK IF BIKE EXISTS IN sheetData (COLUMN C)
-      // ======================
+    final sheetResponse = await http.get(Uri.parse(sheetUrl));
+    final sheetData = json.decode(sheetResponse.body);
 
-      final sheetResponse = await http.get(Uri.parse(sheetUrl));
-      final sheetData = json.decode(sheetResponse.body);
+    bool bikeExists = false;
+    String? matchedBikeNumber; // Store real DB value
 
-      bool bikeExists = false;
+    if (sheetData != null) {
+      for (var row in sheetData) {
+        if (row is List && row.length > 2) {
+          String dbBike = row[2].toString().trim();
+          String dbBikeLower = dbBike.toLowerCase();
 
-      if (sheetData != null) {
-        for (var row in sheetData) {
-          if (row is List && row.length > 2) {
-            if (row[2].toString().trim() == bike) {
-              bikeExists = true;
-              break;
-            }
+          if (dbBikeLower.contains(enteredBike)) {
+            bikeExists = true;
+            matchedBikeNumber = dbBike; // Save exact DB value
+            break;
           }
         }
       }
+    }
 
-      if (!bikeExists) {
-        setState(() {
-          bikeError = "Wrong bike number";
-          loading = false;
-        });
-        return;
-      }
-
-      // ======================
-      // 2️⃣ CHECK IF BIKE ALREADY IN PINS NODE
-      // ======================
-
-      final pinCheck =
-          await http.get(Uri.parse("$pinsUrl/$bike.json"));
-
-      if (pinCheck.body != "null") {
-        setState(() {
-          bikeError = "Bike already signed in. Sign in?";
-          loading = false;
-        });
-        return;
-      }
-
-      // ======================
-      // 3️⃣ SAVE PIN TO FIREBASE
-      // ======================
-
-      await http.put(
-        Uri.parse("$pinsUrl/$bike.json"),
-        body: json.encode({
-          "pin": pin,
-        }),
-      );
-
-      setState(() => loading = false);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Account Created Successfully")),
-      );
-
-      Navigator.pop(context);
-    } catch (e) {
+    if (!bikeExists || matchedBikeNumber == null) {
       setState(() {
-        bikeError = "Connection error";
+        bikeError = "Wrong bike number";
         loading = false;
       });
+      return;
     }
+
+    // ======================
+    // 2️⃣ CHECK IF BIKE ALREADY IN PINS NODE
+    // ======================
+
+    final pinCheck =
+        await http.get(Uri.parse("$pinsUrl/$matchedBikeNumber.json"));
+
+    if (pinCheck.body != "null") {
+      setState(() {
+        bikeError = "Bike already signed in. Sign in?";
+        loading = false;
+      });
+      return;
+    }
+
+    // ======================
+    // 3️⃣ SAVE PIN TO FIREBASE
+    // ======================
+
+    await http.put(
+      Uri.parse("$pinsUrl/$matchedBikeNumber.json"),
+      body: json.encode({
+        "pin": pin,
+      }),
+    );
+
+    setState(() => loading = false);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Account Created Successfully")),
+    );
+
+    Navigator.pop(context);
+  } catch (e) {
+    setState(() {
+      bikeError = "Connection error";
+      loading = false;
+    });
   }
+}
 
   // ============================
   // UI
@@ -131,7 +146,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign Up"),
+        title: const Text("Sign Up",
+        style: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),),
         backgroundColor:
             const Color.fromARGB(255, 16, 92, 177),
       ),
@@ -184,11 +205,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Color.fromARGB(255, 16, 92, 177),
                 minimumSize:
                     const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5), // same as input boxes
+                  ),
               ),
               child: loading
                   ? const CircularProgressIndicator(
                       color: Colors.white)
-                  : const Text("Create Account"),
+                  : const Text("Create Account",
+                  style: TextStyle(
+                  fontFamily: 'Poppins-Bold',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+
+                  ),
+                  ),
             ),
           ],
         ),

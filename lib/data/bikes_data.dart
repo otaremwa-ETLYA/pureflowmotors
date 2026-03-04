@@ -3,7 +3,7 @@ import '../models/loan_option.dart';
 
 final List<Bike> bikes = [
   Bike(
-    name: "BAJAJ BOXER",
+    name: "Bajaj Boxer",
     imageUrl: "lib/assets/bikes/bajaj_boxer.png",
     category: "Standard",
     loanOptions: [
@@ -113,371 +113,7 @@ final List<Bike> bikes = [
   ),
 
   Bike(
-    name: "CT 23",
-    imageUrl: "lib/assets/bikes/CT_23.png",
-    category: "Standard",
-    loanOptions: [
-      // 950,000
-      LoanOption(downPayment: 950000, durationWeeks: 130, weeklyPayment: 71683),
-      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 75965),
-      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 81318),
-      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 97376),
-      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 129493),
-
-      // 1,050,000
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 130,
-        weeklyPayment: 70267,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 117,
-        weeklyPayment: 74464,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 104,
-        weeklyPayment: 79710,
-      ),
-      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 95448),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 52,
-        weeklyPayment: 126924,
-      ),
-
-      // 1,250,000
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 130,
-        weeklyPayment: 67437,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 117,
-        weeklyPayment: 71462,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 104,
-        weeklyPayment: 76495,
-      ),
-      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 91592),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 52,
-        weeklyPayment: 121785,
-      ),
-
-      // 1,550,000
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 130,
-        weeklyPayment: 63191,
-      ),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 117,
-        weeklyPayment: 66960,
-      ),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 104,
-        weeklyPayment: 71672,
-      ),
-      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 85807),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 52,
-        weeklyPayment: 114077,
-      ),
-
-      // 2,050,000
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 130,
-        weeklyPayment: 56114,
-      ),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 117,
-        weeklyPayment: 59456,
-      ),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 104,
-        weeklyPayment: 63633,
-      ),
-      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 76166),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 52,
-        weeklyPayment: 101231,
-      ),
-    ],
-  ),
-  Bike(
-    name: "HAOJUE XPRESS PLUS 125CC",
-    imageUrl: "lib/assets/bikes/haojue_express_plus125cc.png",
-    category: "Scooter",
-    loanOptions: [
-      // 950,000
-      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 84145),
-      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 89914),
-      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 107222),
-      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 141839),
-
-      // 1,050,000
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 117,
-        weeklyPayment: 82644,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 104,
-        weeklyPayment: 88306,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 78,
-        weeklyPayment: 105294,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 52,
-        weeklyPayment: 139270,
-      ),
-
-      // 1,250,000
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 117,
-        weeklyPayment: 79642,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 104,
-        weeklyPayment: 85091,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 78,
-        weeklyPayment: 101438,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 52,
-        weeklyPayment: 134131,
-      ),
-
-      // 1,550,000
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 117,
-        weeklyPayment: 75139,
-      ),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 104,
-        weeklyPayment: 80268,
-      ),
-      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 95653),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 52,
-        weeklyPayment: 126424,
-      ),
-
-      // 2,050,000
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 117,
-        weeklyPayment: 67635,
-      ),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 104,
-        weeklyPayment: 72229,
-      ),
-      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 86012),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 52,
-        weeklyPayment: 113577,
-      ),
-    ],
-  ),
-
-  Bike(
-    name: "HAOJUE EG AND XPRESS 125CC",
-    imageUrl: "lib/assets/bikes/haojue_XPRESs.png",
-    category: "Scooter",
-    loanOptions: [
-      // 950,000
-      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 79642),
-      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 85091),
-      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 101438),
-      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 134131),
-
-      // 1,050,000
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 117,
-        weeklyPayment: 78141,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 104,
-        weeklyPayment: 83483,
-      ),
-      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 99509),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 52,
-        weeklyPayment: 131562,
-      ),
-
-      // 1,250,000
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 117,
-        weeklyPayment: 75139,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 104,
-        weeklyPayment: 80268,
-      ),
-      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 95653),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 52,
-        weeklyPayment: 126424,
-      ),
-
-      // 1,550,000
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 117,
-        weeklyPayment: 70637,
-      ),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 104,
-        weeklyPayment: 75445,
-      ),
-      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 89868),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 52,
-        weeklyPayment: 118716,
-      ),
-
-      // 2,050,000
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 117,
-        weeklyPayment: 63133,
-      ),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 104,
-        weeklyPayment: 67406,
-      ),
-      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 80227),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 52,
-        weeklyPayment: 105870,
-      ),
-    ],
-  ),
-
-  Bike(
-    name: "HAOJUE EG 150CC",
-    imageUrl: "lib/assets/bikes/haojue_eg.png",
-    category: "Standard",
-    loanOptions: [
-      // 950,000
-      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 75890),
-      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 81072),
-      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 96617),
-      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 127708),
-
-      // 1,050,000
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 117,
-        weeklyPayment: 68386,
-      ),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 104,
-        weeklyPayment: 73033,
-      ),
-      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 86976),
-      LoanOption(
-        downPayment: 1050000,
-        durationWeeks: 52,
-        weeklyPayment: 114862,
-      ),
-
-      // 1,250,000
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 117,
-        weeklyPayment: 60881,
-      ),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 104,
-        weeklyPayment: 64995,
-      ),
-      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 77335),
-      LoanOption(
-        downPayment: 1250000,
-        durationWeeks: 52,
-        weeklyPayment: 102016,
-      ),
-
-      // 1,550,000
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 117,
-        weeklyPayment: 53377,
-      ),
-      LoanOption(
-        downPayment: 1550000,
-        durationWeeks: 104,
-        weeklyPayment: 56956,
-      ),
-      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 67694),
-      LoanOption(downPayment: 1550000, durationWeeks: 52, weeklyPayment: 89170),
-
-      // 2,050,000
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 117,
-        weeklyPayment: 68386,
-      ),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 104,
-        weeklyPayment: 73033,
-      ),
-      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 86976),
-      LoanOption(
-        downPayment: 2050000,
-        durationWeeks: 52,
-        weeklyPayment: 114862,
-      ),
-    ],
-  ),
-
-  Bike(
-    name: "ALLOY WHEEL Boxer Bajaj",
+    name: "Alloy Wheel Boxer Bajaj",
     imageUrl: "lib/assets/bikes/Boxer_alloy_wheel.png",
     category: "Standard",
     loanOptions: [
@@ -591,7 +227,373 @@ final List<Bike> bikes = [
   ),
 
   Bike(
-    name: "HONDA 110",
+    name: "CT 23",
+    imageUrl: "lib/assets/bikes/CT_23.png",
+    category: "Standard",
+    loanOptions: [
+      // 950,000
+      LoanOption(downPayment: 950000, durationWeeks: 130, weeklyPayment: 71683),
+      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 75965),
+      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 81318),
+      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 97376),
+      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 129493),
+
+      // 1,050,000
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 130,
+        weeklyPayment: 70267,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 117,
+        weeklyPayment: 74464,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 104,
+        weeklyPayment: 79710,
+      ),
+      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 95448),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 52,
+        weeklyPayment: 126924,
+      ),
+
+      // 1,250,000
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 130,
+        weeklyPayment: 67437,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 117,
+        weeklyPayment: 71462,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 104,
+        weeklyPayment: 76495,
+      ),
+      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 91592),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 52,
+        weeklyPayment: 121785,
+      ),
+
+      // 1,550,000
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 130,
+        weeklyPayment: 63191,
+      ),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 117,
+        weeklyPayment: 66960,
+      ),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 104,
+        weeklyPayment: 71672,
+      ),
+      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 85807),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 52,
+        weeklyPayment: 114077,
+      ),
+
+      // 2,050,000
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 130,
+        weeklyPayment: 56114,
+      ),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 117,
+        weeklyPayment: 59456,
+      ),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 104,
+        weeklyPayment: 63633,
+      ),
+      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 76166),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 52,
+        weeklyPayment: 101231,
+      ),
+    ],
+  ),
+  Bike(
+    name: "Haojue Xpress Plus 125CC",
+    imageUrl: "lib/assets/bikes/haojue_express_plus125cc.png",
+    category: "Scooter",
+    loanOptions: [
+      // 950,000
+      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 84145),
+      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 89914),
+      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 107222),
+      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 141839),
+
+      // 1,050,000
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 117,
+        weeklyPayment: 82644,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 104,
+        weeklyPayment: 88306,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 78,
+        weeklyPayment: 105294,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 52,
+        weeklyPayment: 139270,
+      ),
+
+      // 1,250,000
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 117,
+        weeklyPayment: 79642,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 104,
+        weeklyPayment: 85091,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 78,
+        weeklyPayment: 101438,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 52,
+        weeklyPayment: 134131,
+      ),
+
+      // 1,550,000
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 117,
+        weeklyPayment: 75139,
+      ),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 104,
+        weeklyPayment: 80268,
+      ),
+      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 95653),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 52,
+        weeklyPayment: 126424,
+      ),
+
+      // 2,050,000
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 117,
+        weeklyPayment: 67635,
+      ),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 104,
+        weeklyPayment: 72229,
+      ),
+      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 86012),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 52,
+        weeklyPayment: 113577,
+      ),
+    ],
+  ),
+
+  Bike(
+    name: "Haojue EG and Xpress 125CC",
+    imageUrl: "lib/assets/bikes/haojue_XPRESs.png",
+    category: "Scooter",
+    loanOptions: [
+      // 950,000
+      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 79642),
+      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 85091),
+      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 101438),
+      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 134131),
+
+      // 1,050,000
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 117,
+        weeklyPayment: 78141,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 104,
+        weeklyPayment: 83483,
+      ),
+      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 99509),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 52,
+        weeklyPayment: 131562,
+      ),
+
+      // 1,250,000
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 117,
+        weeklyPayment: 75139,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 104,
+        weeklyPayment: 80268,
+      ),
+      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 95653),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 52,
+        weeklyPayment: 126424,
+      ),
+
+      // 1,550,000
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 117,
+        weeklyPayment: 70637,
+      ),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 104,
+        weeklyPayment: 75445,
+      ),
+      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 89868),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 52,
+        weeklyPayment: 118716,
+      ),
+
+      // 2,050,000
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 117,
+        weeklyPayment: 63133,
+      ),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 104,
+        weeklyPayment: 67406,
+      ),
+      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 80227),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 52,
+        weeklyPayment: 105870,
+      ),
+    ],
+  ),
+
+  Bike(
+    name: "Haojue EG 150CC",
+    imageUrl: "lib/assets/bikes/haojue_eg.png",
+    category: "Standard",
+    loanOptions: [
+      // 950,000
+      LoanOption(downPayment: 950000, durationWeeks: 117, weeklyPayment: 75890),
+      LoanOption(downPayment: 950000, durationWeeks: 104, weeklyPayment: 81072),
+      LoanOption(downPayment: 950000, durationWeeks: 78, weeklyPayment: 96617),
+      LoanOption(downPayment: 950000, durationWeeks: 52, weeklyPayment: 127708),
+
+      // 1,050,000
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 117,
+        weeklyPayment: 68386,
+      ),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 104,
+        weeklyPayment: 73033,
+      ),
+      LoanOption(downPayment: 1050000, durationWeeks: 78, weeklyPayment: 86976),
+      LoanOption(
+        downPayment: 1050000,
+        durationWeeks: 52,
+        weeklyPayment: 114862,
+      ),
+
+      // 1,250,000
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 117,
+        weeklyPayment: 60881,
+      ),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 104,
+        weeklyPayment: 64995,
+      ),
+      LoanOption(downPayment: 1250000, durationWeeks: 78, weeklyPayment: 77335),
+      LoanOption(
+        downPayment: 1250000,
+        durationWeeks: 52,
+        weeklyPayment: 102016,
+      ),
+
+      // 1,550,000
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 117,
+        weeklyPayment: 53377,
+      ),
+      LoanOption(
+        downPayment: 1550000,
+        durationWeeks: 104,
+        weeklyPayment: 56956,
+      ),
+      LoanOption(downPayment: 1550000, durationWeeks: 78, weeklyPayment: 67694),
+      LoanOption(downPayment: 1550000, durationWeeks: 52, weeklyPayment: 89170),
+
+      // 2,050,000
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 117,
+        weeklyPayment: 68386,
+      ),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 104,
+        weeklyPayment: 73033,
+      ),
+      LoanOption(downPayment: 2050000, durationWeeks: 78, weeklyPayment: 86976),
+      LoanOption(
+        downPayment: 2050000,
+        durationWeeks: 52,
+        weeklyPayment: 114862,
+      ),
+    ],
+  ),
+
+  
+
+  Bike(
+    name: "Honda 110",
     imageUrl: "lib/assets/bikes/honda_110.png",
     category: "Standard",
     loanOptions: [
@@ -683,7 +685,7 @@ final List<Bike> bikes = [
   ),
 
   Bike(
-    name: "HONDA 125",
+    name: "Honda 125",
     imageUrl: "lib/assets/bikes/honda_125.png",
     category: "Standard",
     loanOptions: [

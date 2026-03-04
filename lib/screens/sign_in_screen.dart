@@ -27,67 +27,118 @@ class _SignInScreenState extends State<SignInScreen> {
   // SIGN IN FUNCTION
   // ============================
   Future<void> signIn() async {
+  setState(() {
+    errorText = null;
+  });
+
+  String bike = bikeController.text.trim();
+  String pin = pinController.text.trim();
+
+  if (bike.isEmpty || pin.isEmpty) {
     setState(() {
-      errorText = null;
+      errorText = "All fields are required";
     });
+    return;
+  }
 
-    String bike = bikeController.text.trim();
-    String pin = pinController.text.trim();
+  // ✅ Require at least 8 characters
+  if (bike.length < 8) {
+    setState(() {
+      errorText = "Enter full Bike Number.";
+    });
+    return;
+  }
 
-    if (bike.isEmpty || pin.isEmpty) {
+  setState(() => loading = true);
+
+  try {
+    String enteredBike = bike.toLowerCase().trim();
+
+    // ======================
+    // 1️⃣ FETCH ALL PINS
+    // ======================
+
+    final response = await http.get(Uri.parse("$pinsUrl.json"));
+
+    if (response.body == "null") {
       setState(() {
-        errorText = "All fields are required";
+        errorText = "Bike not signed up";
+        loading = false;
       });
       return;
     }
 
-    setState(() => loading = true);
+    final Map<String, dynamic> allPins =
+        json.decode(response.body);
 
-    try {
-      // Fetch bike from pins node
-      final response = await http.get(Uri.parse("$pinsUrl/$bike.json"));
+    String? matchedBikeKey;
+    Map<String, dynamic>? matchedBikeData;
 
-      if (response.body == "null") {
-        setState(() {
-          errorText = "Bike not signed up";
-          loading = false;
-        });
-        return;
+    // ======================
+    // 2️⃣ FIND MATCH (case insensitive + contains)
+    // ======================
+
+    allPins.forEach((key, value) {
+      String dbKeyLower = key.toLowerCase();
+
+      if (dbKeyLower.contains(enteredBike)) {
+        matchedBikeKey = key;
+        matchedBikeData = value;
       }
+    });
 
-      final Map<String, dynamic> data = json.decode(response.body);
-
-      if (data["pin"] != pin) {
-        setState(() {
-          errorText = "Incorrect PIN";
-          loading = false;
-        });
-        return;
-      }
-
-      // Save login info locally
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString("bike", bike);
-      await prefs.setString("name", "Customer"); // you can modify to fetch from sheetData later
-
-      setState(() => loading = false);
-
-      // Call parent callback
-      widget.onLoginSuccess();
-      Navigator.pop(context);
-    } catch (e) {
+    if (matchedBikeKey == null || matchedBikeData == null) {
       setState(() {
-        errorText = "Connection error";
+        errorText = "Bike not signed up";
         loading = false;
       });
+      return;
     }
+
+    // ======================
+    // 3️⃣ CHECK PIN
+    // ======================
+
+    if (matchedBikeData!["pin"] != pin) {
+      setState(() {
+        errorText = "Incorrect PIN";
+        loading = false;
+      });
+      return;
+    }
+
+    // ======================
+    // 4️⃣ SAVE LOGIN INFO LOCALLY
+    // ======================
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString("bike", matchedBikeKey!);
+    await prefs.setString("name", "Customer");
+
+    setState(() => loading = false);
+
+    widget.onLoginSuccess();
+    Navigator.pop(context);
+
+  } catch (e) {
+    setState(() {
+      errorText = "Connection error";
+      loading = false;
+    });
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign In"),
+        title: const Text("Sign In",
+        style: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),),
         backgroundColor: const Color.fromARGB(255, 16, 92, 177),
       ),
       body: Padding(
