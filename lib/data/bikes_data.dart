@@ -73,7 +73,7 @@ final List<Bike> bikes = [
   Bike(
     name: "Haojue Xpress Plus 125CC",
     imageUrl: "lib/assets/bikes/haojue_express_plus125cc.png",
-    category: "Scooter",
+    category: "Standard",
     loanOptions: [
       ...buildLoanOptions(950000,{117:84145,104:89914,78:107222,52:141839}),
       ...buildLoanOptions(1050000,{117:82644,104:88306,78:105294,52:139270}),
@@ -89,7 +89,7 @@ final List<Bike> bikes = [
   Bike(
     name: "Haojue EG and Xpress 125CC",
     imageUrl: "lib/assets/bikes/haojue_XPRESs.png",
-    category: "Scooter",
+    category: "Standard",
     loanOptions: [
       ...buildLoanOptions(950000,{117:79642,104:85091,78:101438,52:134131}),
       ...buildLoanOptions(1050000,{117:78141,104:83483,78:99509,52:131562}),
@@ -146,4 +146,123 @@ final List<Bike> bikes = [
       ...buildLoanOptions(2050000,{104:67340.14,78:80225.39,52:105995.91}),
     ],
   ),
+
+  Bike(
+    name: "Kevla 200cc With Water Cooling",
+    imageUrl: "lib/assets/bikes/kevla_200cc.png",
+    category: "Tuku Tuku",
+    loanOptions: [
+      ...buildLoanOptions(3100000,{104: 119346,78: 143385,52: 191462}),
+      ...buildLoanOptions(3300000,{104: 116131,78: 139528,52: 186323}),
+      ...buildLoanOptions(3500000,{104: 112915,78: 135672,52: 181185}),
+      ...buildLoanOptions(4000000,{104: 104877,78: 126031,52: 168338}),
+      ...buildLoanOptions(4500000,{104: 96838,78: 116390,52: 155492}),
+    ],
+  ),
+Bike(
+  name: "Kevla 250cc With Tipping",
+  imageUrl: "lib/assets/bikes/kevla_250cc_tipping.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(6000000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(6100000,{104: 117738,78: 141456,52: 188892}),
+    ...buildLoanOptions(6200000,{104: 116131,78: 139528,52: 186323}),
+    ...buildLoanOptions(6500000,{104: 111308,78: 133744,52: 178615}),
+    ...buildLoanOptions(7000000,{104: 103269,78: 124103,52: 165769}),
+  ],
+),
+
+// Bike(
+//   name: "Kevla 250cc With Tipping",
+//   imageUrl: "lib/assets/bikes/kevla_250cc_tipping.png",
+//   category: "Tuku Tuku",
+//   loanOptions: [
+//     ...buildLoanOptions(6000000,{104: 119346,78: 143385,52: 191462}),
+//     ...buildLoanOptions(6100000,{104: 117738,78: 141456,52: 188892}),
+//     ...buildLoanOptions(6200000,{104: 116131,78: 139528,52: 186323}),
+//     ...buildLoanOptions(6500000,{104: 111308,78: 133744,52: 178615}),
+//     ...buildLoanOptions(7000000,{104: 103269,78: 124103,52: 165769}),
+//   ],
+// ),
+
+Bike(
+  name: "Kevla 300cc With Tipping",
+  imageUrl: "lib/assets/bikes/kevla_300cc_tipping.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(6900000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(7000000,{104: 117738,78: 141456,52: 188892}),
+    ...buildLoanOptions(7200000,{104: 114523,78: 137600,52: 183754}),
+    ...buildLoanOptions(7300000,{104: 112915,78: 135672,52: 181185}),
+    ...buildLoanOptions(7500000,{104: 109700,78: 131815,52: 176046}),
+  ],
+),
+
+Bike(
+  name: "Zongshen 200cc Water Cooled",
+  imageUrl: "lib/assets/bikes/zongshen_200cc_water_cooled.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(3250000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(3500000,{104: 115327,78: 138564,52: 185038}),
+    ...buildLoanOptions(4000000,{104: 107288,78: 128923,52: 172192}),
+    ...buildLoanOptions(4500000,{104: 99250,78: 119282,52: 159346}),
+  ],
+),
+
+Bike(
+  name: "Zongshen 250cc Water Cooled No Tipping",
+  imageUrl: "lib/assets/bikes/zongshen_250cc_no_tipping.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(4700000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(5000000,{104: 114523,78: 137600,52: 183754}),
+    ...buildLoanOptions(5200000,{104: 111308,78: 133744,52: 178615}),
+    ...buildLoanOptions(5500000,{104: 106485,78: 127959,52: 170908}),
+    ...buildLoanOptions(5700000,{104: 103269,78: 124103,52: 165769}),
+  ],
+),
+
+Bike(
+  name: "Zongshen 200cc Air Cooled",
+  imageUrl: "lib/assets/bikes/zongshen_200cc_air_cooled.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(2600000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(3000000,{104: 112915,78: 135672,52: 181185}),
+    ...buildLoanOptions(3500000,{104: 104877,78: 126031,52: 168338}),
+    ...buildLoanOptions(4000000,{104: 96838,78: 116390,52: 155492}),
+    ...buildLoanOptions(4500000,{104: 88800,78: 106749,52: 142646}),
+  ],
+),
+
+Bike(
+  name: "Zongshen 250cc Double Tyre With No Tipping",
+  imageUrl: "lib/assets/bikes/zongshen_250cc_double_tyre_no_tipping.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(5400000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(5500000,{104: 117738,78: 141456,52: 188892}),
+    ...buildLoanOptions(5700000,{104: 114523,78: 137600,52: 183754}),
+    ...buildLoanOptions(6000000,{104: 109700,78: 131815,52: 176046}),
+    ...buildLoanOptions(6500000,{104: 101662,78: 122174,52: 163200}),
+  ],
+),
+
+Bike(
+  name: "Zongshen 250cc Water Cooled Tipping",
+  imageUrl: "lib/assets/bikes/zongshen_250cc_water_cooled_tipping.png",
+  category: "Tuku Tuku",
+  loanOptions: [
+    ...buildLoanOptions(5000000,{104: 119346,78: 143385,52: 191462}),
+    ...buildLoanOptions(5200000,{104: 116131,78: 139528,52: 186323}),
+    ...buildLoanOptions(5500000,{104: 111308,78: 133744,52: 178615}),
+    ...buildLoanOptions(5700000,{104: 108092,78: 129887,52: 173477}),
+    ...buildLoanOptions(6000000,{104: 103269,78: 124103,52: 165769}),
+  ],
+),
+
+
+
+
 ];
