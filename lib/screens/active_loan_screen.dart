@@ -188,6 +188,17 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
             const EdgeInsets.all(16),
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Active Loan",
+                style: TextStyle(
+                  fontFamily: 'Poppins-Bold',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
             const SizedBox(
                 height: 20),
             Row(

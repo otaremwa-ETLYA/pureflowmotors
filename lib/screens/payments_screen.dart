@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'sign_in_screen.dart';
 
 class PaymentsScreen extends StatefulWidget {
   const PaymentsScreen({super.key});
@@ -83,6 +84,20 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
 
     setState(() => loading = false);
   }
+  Future logout() async {
+    final prefs =
+        await SharedPreferences.getInstance();
+    await prefs.clear();
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (_) =>
+            SignInScreen(onLoginSuccess: () {}),
+      ),
+      (route) => false,
+    );
+  }
 
   String formatDateTime(String dateStr) {
     try {
@@ -156,6 +171,15 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
             ),
           ],
         ),
+         actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white, // ✅ white logout icon
+            ),
+            onPressed: logout,
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -166,6 +190,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
               "Payment History",
               style: TextStyle(
                 fontFamily: 'Poppins-Bold',
+                fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
             ),
