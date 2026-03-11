@@ -16,8 +16,8 @@ class _MoreScreenState extends State<MoreScreen> {
     super.initState();
 
     controller = YoutubePlayerController.fromVideoId(
-      videoId: 'aIP0aQaxvZM',    // Use only the video ID
-      autoPlay: false,          // correct parameter
+      videoId: 'aIP0aQaxvZM', // Replace with your video ID
+      autoPlay: false,
       params: const YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,
@@ -27,14 +27,13 @@ class _MoreScreenState extends State<MoreScreen> {
 
   @override
   void dispose() {
-    controller.close(); // correct cleanup
+    controller.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 16, 92, 177),
         title: Column(
@@ -62,14 +61,15 @@ class _MoreScreenState extends State<MoreScreen> {
           ],
         ),
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // Impact Section
+            // =========================
+            // IMPACT VIDEO
+            // =========================
             const Text(
               "Impact",
               style: TextStyle(
@@ -79,39 +79,31 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
             ),
             const SizedBox(height: 12),
-
             ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: YoutubePlayer(
-                  controller: controller,
-                ),
+                child: YoutubePlayer(controller: controller),
               ),
             ),
-
             const SizedBox(height: 20),
 
-            // Trust Stats
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  ImpactStat("10,000+", "Members\nServed"),
-                  ImpactStat("14+", "Branches\nOpened"),
-                  ImpactStat("104+", "Districts\nReached"),
-                ],
-              ),
+            // =========================
+            // TRUST-BUILDING STATS
+            // =========================
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                StatsCard(title: "Members Served", value: "10,000+"),
+                StatsCard(title: "Branches Opened", value: "14+"),
+                StatsCard(title: "Districts Reached", value: "104+"),
+              ],
             ),
-
             const SizedBox(height: 30),
 
-            // Contact Us
+            // =========================
+            // CONTACT US SECTION
+            // =========================
             const Text(
               "Contact Us",
               style: TextStyle(
@@ -121,28 +113,18 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
             ),
             const SizedBox(height: 12),
-
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    contactRow(Icons.phone, "+256 700 123 456"),
-                    const Divider(),
-                    contactRow(Icons.phone_android, "+256 782 123 456"),
-                    const Divider(),
-                    contactRow(Icons.email, "info@pureflowboda.com"),
-                  ],
-                ),
-              ),
+            Column(
+              children: const [
+                ContactCard(icon: Icons.phone, value: "+256 700 123 456"),
+                SizedBox(height: 12),
+                ContactCard(icon: Icons.phone_android, value: "+256 782 123 456"),
+                SizedBox(height: 12),
+                ContactCard(icon: Icons.email, value: "info@pureflowboda.org"),
+              ],
             ),
-
             const SizedBox(height: 30),
 
+            // APP VERSION
             Center(
               child: Text(
                 "App Version 1.0",
@@ -158,51 +140,99 @@ class _MoreScreenState extends State<MoreScreen> {
       ),
     );
   }
+}
 
-  Widget contactRow(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, color: const Color.fromARGB(255, 16, 92, 177)),
-        const SizedBox(width: 12),
-        Text(
-          text,
-          style: const TextStyle(
-            fontFamily: 'Poppins-Regular',
-            fontSize: 15,
-          ),
+// =========================
+// STATS CARD WIDGET
+// =========================
+class StatsCard extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const StatsCard({super.key, required this.title, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
-      ],
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Poppins-Regular',
+                fontSize: 10,
+                color: Colors.black54,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              value,
+              style: const TextStyle(
+                fontFamily: 'Poppins-SemiBold',
+                fontSize: 16,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class ImpactStat extends StatelessWidget {
-  final String number;
-  final String label;
+// =========================
+// CONTACT CARD WIDGET
+// =========================
+class ContactCard extends StatelessWidget {
+  final IconData icon;
+  final String value;
 
-  const ImpactStat(this.number, this.label, {super.key});
+  const ContactCard({super.key, required this.icon, required this.value});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          number,
-          style: const TextStyle(
-            fontFamily: 'Poppins-Bold',
-            fontSize: 20,
-            color: Color.fromARGB(255, 16, 92, 177),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: 'Poppins-Regular',
-            fontSize: 12,
+        ],
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: const Color.fromARGB(255, 16, 92, 177)),
+          const SizedBox(width: 12),
+          Text(
+            value,
+            style: const TextStyle(
+              fontFamily: 'Poppins-SemiBold',
+              fontSize: 16,
+              color: Colors.black87,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
