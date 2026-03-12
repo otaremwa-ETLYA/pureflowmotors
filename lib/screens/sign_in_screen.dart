@@ -53,7 +53,7 @@ void initState() {
     }
 
     // Require at least 8 characters
-    if (bike.length < 8) {
+    if (bike.length < 7) {
       setState(() {
         errorText = "Enter full Bike Number.";
       });

@@ -56,7 +56,7 @@ void initState() {
       return;
     }
 
-    if (bike.length < 8) {
+    if (bike.length < 7) {
       setState(() {
         bikeError = "Enter full Bike Number.";
       });
