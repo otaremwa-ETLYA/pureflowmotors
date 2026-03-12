@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -16,7 +17,7 @@ class _MoreScreenState extends State<MoreScreen> {
     super.initState();
 
     controller = YoutubePlayerController.fromVideoId(
-      videoId: 'aIP0aQaxvZM', // Replace with your video ID
+      videoId: 'aIP0aQaxvZM',
       autoPlay: false,
       params: const YoutubePlayerParams(
         showControls: true,
@@ -29,6 +30,20 @@ class _MoreScreenState extends State<MoreScreen> {
   void dispose() {
     controller.close();
     super.dispose();
+  }
+
+  Future<void> callNumber(String number) async {
+    final Uri uri = Uri.parse("tel:$number");
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  Future<void> openWhatsApp(String number) async {
+    final Uri uri = Uri.parse("https://wa.me/$number");
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
 
   @override
@@ -73,10 +88,10 @@ class _MoreScreenState extends State<MoreScreen> {
             const Text(
               "Impact",
               style: TextStyle(
-                  fontFamily: 'Poppins-Bold',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                fontFamily: 'Poppins-Bold',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             const SizedBox(height: 12),
             ClipRRect(
@@ -107,19 +122,31 @@ class _MoreScreenState extends State<MoreScreen> {
             const Text(
               "Contact Us",
               style: TextStyle(
-                  fontFamily: 'Poppins-Bold',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                fontFamily: 'Poppins-Bold',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             const SizedBox(height: 12),
             Column(
-              children: const [
-                ContactCard(icon: Icons.phone, value: "+256 700 123 456"),
-                SizedBox(height: 12),
-                ContactCard(icon: Icons.phone_android, value: "+256 782 123 456"),
-                SizedBox(height: 12),
-                ContactCard(icon: Icons.email, value: "info@pureflowboda.org"),
+              children: [
+                ContactCard(
+                  icon: Icons.phone,
+                  value: "+256702847545",
+                  onTap: () => callNumber("256702847545"),
+                ),
+                const SizedBox(height: 12),
+                ContactCard(
+                  icon: Icons.phone_android,
+                  value: "+256771992105",
+                  onTap: () => callNumber("256771992105"),
+                ),
+                const SizedBox(height: 12),
+                ContactCard(
+                  icon: Icons.chat,
+                  value: "WhatsApp: +256702927830",
+                  onTap: () => openWhatsApp("256702927830"),
+                ),
               ],
             ),
             const SizedBox(height: 30),
@@ -201,37 +228,46 @@ class StatsCard extends StatelessWidget {
 class ContactCard extends StatelessWidget {
   final IconData icon;
   final String value;
+  final VoidCallback onTap;
 
-  const ContactCard({super.key, required this.icon, required this.value});
+  const ContactCard({
+    super.key,
+    required this.icon,
+    required this.value,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 6,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: const Color.fromARGB(255, 16, 92, 177)),
-          const SizedBox(width: 12),
-          Text(
-            value,
-            style: const TextStyle(
-              fontFamily: 'Poppins-SemiBold',
-              fontSize: 16,
-              color: Colors.black87,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: const Color.fromARGB(255, 16, 92, 177)),
+            const SizedBox(width: 12),
+            Text(
+              value,
+              style: const TextStyle(
+                fontFamily: 'Poppins-SemiBold',
+                fontSize: 16,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
