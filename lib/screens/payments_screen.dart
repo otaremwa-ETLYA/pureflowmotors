@@ -99,16 +99,14 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
     );
   }
 
-  String formatDateTime(String dateStr) {
-    try {
-      final dt = DateTime.parse(dateStr);
-      final date = DateFormat("dd/MM/yyyy").format(dt);
-      final time = DateFormat("hh:mm a").format(dt);
-      return "$date, $time";
-    } catch (_) {
-      return dateStr;
-    }
+  String formatDate(String dateStr) {
+  try {
+    final dt = DateTime.parse(dateStr);
+    return DateFormat("dd/MM/yyyy").format(dt);
+  } catch (_) {
+    return dateStr;
   }
+}
 
   Future refreshPayments() async {
     await fetchPaymentHistory();
@@ -140,7 +138,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
             ),
           ),
           Text(
-            formatDateTime(payment['date']),
+            formatDate(payment['date']),
             style: const TextStyle(
               fontFamily: 'Poppins-Regular',
               fontSize: 12,

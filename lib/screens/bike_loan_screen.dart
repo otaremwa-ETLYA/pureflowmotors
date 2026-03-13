@@ -155,107 +155,78 @@ void dispose() {
 
 
             SizedBox(
-            height: 220,
+  height: 220,
+  child: Center(
+    child: ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: 400, // ← limit width here
+      ),
+      child: PageView.builder(
+        controller: bikePageController,
 
-            child: PageView.builder(
+        onPageChanged: (index) {
+          final bikeIndex = index % bikes.length;
 
-            controller: bikePageController,
+          setState(() {
+            selectedBike = bikes[bikeIndex];
 
-            onPageChanged: (index) {
+            selectedDownPayment = null;
+            selectedDuration = null;
+            selectedWeeklyPayment = null;
 
-              final bikeIndex = index % bikes.length;
+            freezeFiltering = false;
+          });
+        },
 
-              setState(() {
+        itemBuilder: (context, index) {
+          final bike = bikes[index % bikes.length];
 
-                selectedBike = bikes[bikeIndex];
+          final isSelected =
+              selectedBike?.name == bike.name;
 
-                selectedDownPayment = null;
-                selectedDuration = null;
-                selectedWeeklyPayment = null;
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
 
-                freezeFiltering = false;
+            margin: EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: isSelected ? 10 : 30,
+            ),
 
-              });
+            child: AnimatedScale(
+              duration: const Duration(milliseconds: 300),
+              scale: isSelected ? 1.0 : 0.50,
 
-            },
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                opacity: isSelected ? 1.0 : 0.65,
 
-            itemBuilder: (context,index){
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
 
-              final bike = bikes[index % bikes.length];
-
-              final isSelected =
-                  selectedBike?.name == bike.name;
-
-              return AnimatedContainer(
-
-                duration: const Duration(milliseconds:300),
-
-                margin: EdgeInsets.symmetric(
-                  horizontal:10,
-                  vertical: isSelected ? 10 : 30,
-                ),
-
-                // decoration: BoxDecoration(
-
-                //   borderRadius: BorderRadius.circular(16),
-
-                //   boxShadow: [
-
-                //     if (isSelected)
-                //       BoxShadow(
-                //         color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.20),
-                //         blurRadius: 12,
-                //         offset: const Offset(0,4),
-                //       )
-
-                //   ],
-                // ),
-
-                // ⭐ SCALE + OPACITY ADDED HERE
-                child: AnimatedScale(
-
-                  duration: const Duration(milliseconds:300),
-
-                  scale: isSelected ? 1.0 : 0.50,
-
-                  child: AnimatedOpacity(
-
-                    duration: const Duration(milliseconds:300),
-
-                    opacity: isSelected ? 1.0 : 0.65,
-
-                    child: ClipRRect(
-
-                      borderRadius: BorderRadius.circular(16),
-
-                      child: Stack(
-
-                        fit: StackFit.expand,
-
-                        children: [
-
-                          Image.asset(
-                            bike.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
-
-                          Container(
-                            alignment: Alignment.bottomCenter,
-                            padding: const EdgeInsets.all(8),
-
-                            color: Colors.transparent,
-
-                          )
-
-                        ],
-                      ),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(
+                      bike.imageUrl,
+                      fit: BoxFit.contain,
                     ),
+
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.transparent,
+                      )
+                    ],
                   ),
                 ),
-        );
-      },
+              ),
+            ),
+          );
+        },
+      ),
     ),
-          ),
+  ),
+),
 
           const SizedBox(height:20),
             // ======================
