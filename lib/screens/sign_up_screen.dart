@@ -165,104 +165,32 @@ void initState() {
   // ============================
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sign Up",
-          style: TextStyle(
-            fontFamily: 'Poppins-Bold',
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.grey[200],
+    body: SafeArea(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: Column(
+            children: [
 
-            Image.asset(
-              'lib/assets/icon/app_icon.png',
-              height: 120,
-            ),
-
-            const SizedBox(height: 30),
-
-            // BIKE NUMBER
-            TextField(
-              controller: bikeController,
-              focusNode: bikeFocus,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) {
-                FocusScope.of(context).requestFocus(pinFocus);
-              },
-              decoration: InputDecoration(
-                labelText: "Bike Number",
-                errorText: bikeError,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // CREATE PIN
-            TextField(
-              controller: pinController,
-              focusNode: pinFocus,
-              obscureText: true,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) {
-                FocusScope.of(context).requestFocus(confirmPinFocus);
-              },
-              decoration: const InputDecoration(
-                labelText: "Create PIN",
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // CONFIRM PIN
-            TextField(
-              controller: confirmPinController,
-              focusNode: confirmPinFocus,
-              obscureText: true,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) {
-                signUp();
-              },
-              decoration: const InputDecoration(
-                labelText: "Re-enter PIN",
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: loading ? null : signUp,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+              // ✅ CUSTOM APP BAR (constrained)
+              Container(
+                height: 56,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 16, 92, 177),
                 ),
-                child: loading
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text(
-                        "Create Account",
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                    const Expanded(
+                      child: Text(
+                        "Sign Up",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Poppins-Bold',
                           fontSize: 16,
@@ -270,11 +198,128 @@ void initState() {
                           color: Colors.white,
                         ),
                       ),
+                    ),
+                    const SizedBox(width: 48),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              // ✅ BODY
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+
+                        const SizedBox(height: 10),
+
+                        Image.asset(
+                          'lib/assets/icon/app_icon.png',
+                          height: 120,
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // BIKE NUMBER
+                        TextField(
+                          controller: bikeController,
+                          focusNode: bikeFocus,
+                          textInputAction: TextInputAction.next,
+                          onSubmitted: (_) {
+                            FocusScope.of(context).requestFocus(pinFocus);
+                          },
+                          decoration: const InputDecoration(
+                            labelText: "Bike Number",
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // CREATE PIN
+                        TextField(
+                          controller: pinController,
+                          focusNode: pinFocus,
+                          obscureText: true,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          onSubmitted: (_) {
+                            FocusScope.of(context)
+                                .requestFocus(confirmPinFocus);
+                          },
+                          decoration: const InputDecoration(
+                            labelText: "Create PIN",
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // CONFIRM PIN
+                        TextField(
+                          controller: confirmPinController,
+                          focusNode: confirmPinFocus,
+                          obscureText: true,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
+                          onSubmitted: (_) {
+                            signUp();
+                          },
+                          decoration: const InputDecoration(
+                            labelText: "Re-enter PIN",
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+
+                        // ✅ ERROR TEXT (cleaner than inside TextField)
+                        if (bikeError != null) ...[
+                          const SizedBox(height: 10),
+                          Text(
+                            bikeError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ],
+
+                        const SizedBox(height: 30),
+
+                        // BUTTON (radius kept same = 5)
+                        SizedBox(
+                          height: 55,
+                          child: ElevatedButton(
+                            onPressed: loading ? null : signUp,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 16, 92, 177),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            child: loading
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white)
+                                : const Text(
+                                    "Create Account",
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins-Bold',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

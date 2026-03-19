@@ -149,110 +149,146 @@ void initState() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sign In",
-          style: TextStyle(
-            fontFamily: 'Poppins-Bold',
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
+      backgroundColor: Colors.grey[200], // optional for web
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Column(
+              children: [
 
-            // APP ICON
-            const SizedBox(height: 10),
-            Image.asset(
-              'lib/assets/icon/app_icon.png',
-              height: 120,
-            ),
-            const SizedBox(height: 30),
-
-            // BIKE NUMBER
-            TextField(
-              controller: bikeController,
-              focusNode: bikeFocus,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) {
-                FocusScope.of(context).requestFocus(pinFocus);
-              },
-              decoration: InputDecoration(
-                labelText: "Bike Number",
-                border: const OutlineInputBorder(),
-                errorText: errorText,
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // PIN
-            TextField(
-              controller: pinController,
-              focusNode: pinFocus,
-              obscureText: true,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) {
-                signIn();
-              },
-              decoration: const InputDecoration(
-                labelText: "PIN",
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            // SIGN IN BUTTON
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: loading ? null : signIn,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                // 👇 CUSTOM APP BAR (now constrained)
+                Container(
+                  height: 56,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 16, 92, 177),
                   ),
-                ),
-                child: loading
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text(
-                        "Sign In",
-                        style: TextStyle(
-                          fontFamily: 'Poppins-Bold',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      const Expanded(
+                        child: Text(
+                          "Sign In",
+                          style: TextStyle(
+                            fontFamily: 'Poppins-Bold',
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // SIGN UP LINK
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SignUpScreen(),
+                      const SizedBox(width: 48), // balance back button
+                    ],
                   ),
-                );
-              },
-              child: const Text("Create Account"),
+                ),
+
+                // 👇 BODY (scrollable)
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+
+                          const SizedBox(height: 10),
+
+                          Image.asset(
+                            'lib/assets/icon/app_icon.png',
+                            height: 120,
+                          ),
+
+                          const SizedBox(height: 30),
+
+                          TextField(
+                            controller: bikeController,
+                            focusNode: bikeFocus,
+                            textInputAction: TextInputAction.next,
+                            onSubmitted: (_) {
+                              FocusScope.of(context).requestFocus(pinFocus);
+                            },
+                            decoration: const InputDecoration(
+                              labelText: "Bike Number",
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          TextField(
+                            controller: pinController,
+                            focusNode: pinFocus,
+                            obscureText: true,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.done,
+                            onSubmitted: (_) {
+                              signIn();
+                            },
+                            decoration: const InputDecoration(
+                              labelText: "PIN",
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+
+                          if (errorText != null) ...[
+                            const SizedBox(height: 10),
+                            Text(
+                              errorText!,
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                          ],
+
+                          const SizedBox(height: 30),
+
+                          SizedBox(
+                            height: 55,
+                            child: ElevatedButton(
+                              onPressed: loading ? null : signIn,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+                                shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              ),
+                              child: loading
+                                  ? const CircularProgressIndicator(color: Colors.white)
+                                  : const Text(
+                                      "Sign In",
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins-Bold',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const SignUpScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text("Create Account"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

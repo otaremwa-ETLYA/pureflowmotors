@@ -7,14 +7,6 @@ import 'sign_in_screen.dart';
 import 'more_screen.dart';
 
 
-// ======================
-// MORE SCREEN
-// ======================
-// class MoreScreen extends StatelessWidget {
-//   const MoreScreen({super.key});
-//   @override
-//   Widget build(BuildContext context) => const Center(child: Text("More"));
-// }
 
 // ======================
 // MAIN NAVIGATION

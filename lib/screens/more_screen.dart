@@ -119,36 +119,47 @@ class _MoreScreenState extends State<MoreScreen> {
             // =========================
             // CONTACT US SECTION
             // =========================
-            const Text(
-              "Contact Us",
-              style: TextStyle(
-                fontFamily: 'Poppins-Bold',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Column(
-              children: [
-                ContactCard(
-                  icon: Icons.phone,
-                  value: "+256702847545",
-                  onTap: () => callNumber("256702847545"),
-                ),
-                const SizedBox(height: 12),
-                ContactCard(
-                  icon: Icons.phone_android,
-                  value: "+256771992105",
-                  onTap: () => callNumber("256771992105"),
-                ),
-                const SizedBox(height: 12),
-                ContactCard(
-                  icon: Icons.chat,
-                  value: "WhatsApp: +256702927830",
-                  onTap: () => openWhatsApp("256702927830"),
-                ),
-              ],
-            ),
+const Text(
+  "Contact Us",
+  style: TextStyle(
+    fontFamily: 'Poppins-Bold',
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+  ),
+),
+const SizedBox(height: 12),
+
+Column(
+  children: const [
+    WhatsAppContactCard(branch: "Mbarara Branch", number: "256755015732"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Ibanda", number: "256788146323"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Ishaka", number: "256789970658"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Ntungamo", number: "256706660271"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Rukungiri", number: "256774825245"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Kihihi", number: "256704171448"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Lyantonde", number: "256772997931"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Fort Portal", number: "256758240129"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Masaka", number: "256700742866"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Jinja", number: "256747658825"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Iganga", number: "256774681161"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Mukono", number: "256705780046"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Nansana", number: "256759554141"),
+    SizedBox(height: 12),
+    WhatsAppContactCard(branch: "Luwero", number: "256751792660"),
+  ],
+),
             const SizedBox(height: 30),
 
             // APP VERSION
@@ -225,22 +236,27 @@ class StatsCard extends StatelessWidget {
 // =========================
 // CONTACT CARD WIDGET
 // =========================
-class ContactCard extends StatelessWidget {
-  final IconData icon;
-  final String value;
-  final VoidCallback onTap;
+class WhatsAppContactCard extends StatelessWidget {
+  final String branch;
+  final String number;
 
-  const ContactCard({
+  const WhatsAppContactCard({
     super.key,
-    required this.icon,
-    required this.value,
-    required this.onTap,
+    required this.branch,
+    required this.number,
   });
+
+  Future<void> openWhatsApp() async {
+    final Uri uri = Uri.parse("https://wa.me/$number");
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: openWhatsApp,
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -256,10 +272,18 @@ class ContactCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: const Color.fromARGB(255, 16, 92, 177)),
+            // WhatsApp PNG Icon
+            Image.asset(
+              "lib/assets/icon/whatsapp.png", // <-- add your png here
+              width: 28,
+              height: 28,
+            ),
+
             const SizedBox(width: 12),
+
+            // Branch Name ONLY (no number)
             Text(
-              value,
+              branch,
               style: const TextStyle(
                 fontFamily: 'Poppins-SemiBold',
                 fontSize: 16,

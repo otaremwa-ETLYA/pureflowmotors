@@ -3,6 +3,7 @@ import '../models/bike.dart';
 import '../models/loan_option.dart';
 import '../data/bikes_data.dart';
 import '../utils/formatters.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BikeLoanScreen extends StatefulWidget {
   const BikeLoanScreen({super.key});
@@ -10,6 +11,62 @@ class BikeLoanScreen extends StatefulWidget {
   @override
   State<BikeLoanScreen> createState() => _BikeLoanScreenState();
 }
+
+// =============================================================
+// 🔥 NEW WIDGET: WHATSAPP BRANCH OPTION
+// =============================================================
+class WhatsAppBranchOption extends StatelessWidget {
+  final String name;
+  final String number;
+
+  final String bike;
+  final String downPayment;
+  final String duration;
+  final String weeklyPayment;
+
+  const WhatsAppBranchOption({
+    super.key,
+    required this.name,
+    required this.number,
+    required this.bike,
+    required this.downPayment,
+    required this.duration,
+    required this.weeklyPayment,
+  });
+
+  Future<void> openChat(BuildContext context) async {
+
+    final message =
+        "Hello $name,\n\n"
+        "I would like to apply for a bike loan.\n\n"
+        "Bike: $bike\n"
+        "Down Payment: $downPayment\n"
+        "Duration: $duration\n"
+        "Weekly Payment: $weeklyPayment";
+
+    final Uri uri = Uri.parse(
+      "https://wa.me/$number?text=${Uri.encodeComponent(message)}",
+    );
+
+    await launchUrl(uri);
+
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.asset(
+        "lib/assets/icon/whatsapp.png",
+        width: 26,
+        height: 26,
+      ),
+      title: Text(name),
+      onTap: () => openChat(context),
+    );
+  }
+}
+
 
 class _BikeLoanScreenState extends State<BikeLoanScreen> {
 
@@ -27,6 +84,10 @@ class _BikeLoanScreenState extends State<BikeLoanScreen> {
       selectedWeeklyPayment != null;
 
   bool get hasFullSelection => isFullMatch;
+String _bikeName = "";
+  String _downPaymentText = "";
+  String _durationText = "";
+  String _weeklyPaymentText = "";
 
 //late PageController bikePageController;
 
@@ -106,6 +167,192 @@ void dispose() {
         .toSet()
         .toList();
   }
+
+    // =========================================================
+  // 🔥 NEW: APPLY POPUP (WHATSAPP BRANCH SELECTOR)
+  // =========================================================
+  void _showApplyPopup() {showModalBottomSheet(
+  context: context,
+
+  // 🔥 important for long branch list
+  isScrollControlled: true,
+
+  // 🔥 keeps true mobile bottom sheet behavior
+  useSafeArea: true,
+
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+  ),
+
+  builder: (context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      
+        child: Container(
+      width: double.infinity,
+      // 🔥 this mimics mobile screen width even on web
+      constraints: const BoxConstraints(maxWidth: 420),
+
+      // 🔥 NO ConstrainedBox → prevents web "desktop centering"
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+
+        children: [
+
+          const Text(
+            "Choose Branch",
+            style: TextStyle(
+              fontSize: 18,
+              fontFamily: 'Poppins-Bold',
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          // 🔥 FIX OVERFLOW + KEEP MOBILE FEEL
+          Flexible(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+
+                  // =========================
+                  // ALL YOUR BRANCHES (UNCHANGED)
+                  // =========================
+
+                  WhatsAppBranchOption(
+                    name: "Mbarara Branch",
+                    number: "256755015732",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Ibanda",
+                    number: "256788146323",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Jinja",
+                    number: "256747658825",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Ishaka",
+                    number: "256789970658",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Ntungamo",
+                    number: "256706660271",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Rukungiri",
+                    number: "256774825245",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Kihihi",
+                    number: "256704171448",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Lyantonde",
+                    number: "256772997931",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Fort Portal",
+                    number: "256758240129",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Masaka",
+                    number: "256700742866",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Iganga",
+                    number: "256774681161",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Mukono",
+                    number: "256705780046",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Nansana",
+                    number: "256759554141",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+
+                  WhatsAppBranchOption(
+                    name: "Luwero",
+                    number: "256751792660",
+                    bike: _bikeName,
+                    downPayment: _downPaymentText,
+                    duration: _durationText,
+                    weeklyPayment: _weeklyPaymentText,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
+  },
+);}
 
   // ================================
   // UI
@@ -658,6 +905,33 @@ void dispose() {
                       ),
                     ),
                     const SizedBox(height: 6),
+
+                  // =================================================
+                  // 🔥 APPLY BUTTON (NEW)
+                  // =================================================
+                  Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: ElevatedButton(
+                            onPressed: () {
+
+                              // store summary BEFORE popup
+                              _bikeName = selectedBike!.name;
+                              _downPaymentText = formatUGX(selectedDownPayment!);
+                              _durationText = "${(selectedDuration! / 52).toStringAsFixed(1)} yrs";
+                              _weeklyPaymentText = formatUGX(selectedWeeklyPayment!.round());
+
+                              _showApplyPopup();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color.fromARGB(255, 16, 92, 177),
+                            ),
+                            child: const Text("Apply"),
+                          ),
+                        ),
+
+
                   ],
                 ),
               ),
@@ -668,4 +942,9 @@ void dispose() {
       ),
     );
   }
+
+
+
+  
 }
+
