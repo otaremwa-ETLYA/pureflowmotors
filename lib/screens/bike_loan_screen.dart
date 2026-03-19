@@ -906,7 +906,7 @@ children: [
           ),
         ),
 
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
 
         // =================================================
         // 🔥 APPLY BUTTON (FIXED - WAS POSITIONED BEFORE)
