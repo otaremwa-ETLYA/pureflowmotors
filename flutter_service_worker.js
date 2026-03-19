@@ -3,11 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "6088b3f15cd0546666ddaa945a436f7c",
-"assets/AssetManifest.bin.json": "abd352da3d785dbfcaffbe974c5600f1",
-"assets/AssetManifest.json": "191fddc9d615a26a120997e7eb0cb62a",
+const RESOURCES = {"assets/AssetManifest.bin": "efba95c9a3a3d1821501565d342688bd",
+"assets/AssetManifest.bin.json": "3beed89be3826d429d0df64599cfd13c",
+"assets/AssetManifest.json": "ceaaa629292cdfdecb2afb51aaa0e066",
 "assets/FontManifest.json": "0178be171a43605316bcc854a778d01f",
-"assets/fonts/MaterialIcons-Regular.otf": "561b72e8f7c3f8ccb141414fdae21a4c",
+"assets/fonts/MaterialIcons-Regular.otf": "94de1797a0e2b7f3be6b10da84de0006",
 "assets/lib/assets/bikes/bajaj_boxer.png": "97629dcb4beda1be0627093da7db240e",
 "assets/lib/assets/bikes/bajaj_boxerr.png": "96a17f1e7f8d0dcab7c672fc59c2dbc1",
 "assets/lib/assets/bikes/Boxer_alloy_wheel.png": "7dcc8a6bbcbcfe3fb19d2e9207669752",
@@ -24,6 +24,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "6088b3f15cd0546666ddaa945a436f7c
 "assets/lib/assets/fonts/Poppins-Regular.ttf": "093ee89be9ede30383f39a899c485a82",
 "assets/lib/assets/fonts/Poppins-SemiBold.ttf": "6f1520d107205975713ba09df778f93f",
 "assets/lib/assets/icon/app_icon.png": "6fca841c69f44eeee61d5ec7d15637bf",
+"assets/lib/assets/icon/whatsapp.png": "fd205156be5c7f8bcbf36189ff8e11b8",
 "assets/NOTICES": "0c01130fed913d8a7c8d5140334fa2a1",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "33b7d9392238c04c131b6ce224e13711",
 "assets/packages/youtube_player_iframe/assets/player.html": "663ba81294a9f52b1afe96815bb6ecf9",
@@ -40,17 +41,17 @@ const RESOURCES = {"assets/AssetManifest.bin": "6088b3f15cd0546666ddaa945a436f7c
 "favicon.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "faviconn.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "83d881c1dbb6d6bcd6b42e274605b69c",
-"flutter_bootstrap.js": "cc10db1f332f31753d5cac21e84f1ba1",
+"flutter_bootstrap.js": "7fc724f6fbc6102782db4c7ecaf8534a",
 "icons/Icon-192.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "icons/Icon-1922.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "icons/Icon-5122.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "f3cb4b1e82afb6b6e57acab755f02beb",
-"/": "f3cb4b1e82afb6b6e57acab755f02beb",
-"main.dart.js": "7ae7f11c50cea6c76125abda7a9c6c6f",
-"manifest.json": "1ecfa9e20ec3f15f96ce67b73c9eefca",
+"index.html": "e35b8a692d61d73740e5bf694caf8d09",
+"/": "e35b8a692d61d73740e5bf694caf8d09",
+"main.dart.js": "20d9ba1f04cd72b406116e60ac60ecb5",
+"manifest.json": "97d75b041019afee7ad5bfaea65243cd",
 "version.json": "59c8f5211bb175d574c68b3a9c7ed593"};
 // The application shell files that are downloaded before a service worker can
 // start.
