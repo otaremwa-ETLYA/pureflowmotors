@@ -22,16 +22,13 @@ class MyApp extends StatelessWidget {
           selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-
-      // 👇 THIS is the important part
       home: Scaffold(
         backgroundColor: Colors.grey[200], // optional side background
         body: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 400, // 👈 mobile width limit
-            ),
-            child: const MainNavigation(),
+            constraints: const BoxConstraints(maxWidth: 400),
+            // 👇 Attach globalKey here
+            child: MainNavigation(key: MainNavigation.globalKey),
           ),
         ),
       ),

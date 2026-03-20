@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
 
@@ -81,7 +82,6 @@ class _MoreScreenState extends State<MoreScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // =========================
             // IMPACT VIDEO
             // =========================
@@ -119,47 +119,59 @@ class _MoreScreenState extends State<MoreScreen> {
             // =========================
             // CONTACT US SECTION
             // =========================
-const Text(
-  "Contact Us",
-  style: TextStyle(
-    fontFamily: 'Poppins-Bold',
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-  ),
-),
-const SizedBox(height: 12),
+            const Text(
+              "Contact a Branch",
+              style: TextStyle(
+                fontFamily: 'Poppins-Bold',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 12),
 
-Column(
-  children: const [
-    WhatsAppContactCard(branch: "Mbarara Branch", number: "256755015732"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Ibanda", number: "256788146323"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Ishaka", number: "256789970658"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Ntungamo", number: "256706660271"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Rukungiri", number: "256774825245"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Kihihi", number: "256704171448"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Lyantonde", number: "256772997931"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Fort Portal", number: "256758240129"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Masaka", number: "256700742866"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Jinja", number: "256747658825"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Iganga", number: "256774681161"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Mukono", number: "256705780046"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Nansana", number: "256759554141"),
-    SizedBox(height: 12),
-    WhatsAppContactCard(branch: "Luwero", number: "256751792660"),
-  ],
-),
+            Column(
+              children: const [
+                WhatsAppContactCard(
+                  branch: "Mbarara",
+                  number: "256755015732",
+                ),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Ibanda", number: "256788146323"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Ishaka", number: "256789970658"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Ntungamo", number: "256706660271"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(
+                  branch: "Rukungiri",
+                  number: "256774825245",
+                ),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Kihihi", number: "256704171448"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(
+                  branch: "Lyantonde",
+                  number: "256772997931",
+                ),
+                SizedBox(height: 12),
+                WhatsAppContactCard(
+                  branch: "Fort Portal",
+                  number: "256758240129",
+                ),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Masaka", number: "256700742866"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Jinja", number: "256747658825"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Iganga", number: "256774681161"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Mukono", number: "256705780046"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Nansana", number: "256759554141"),
+                SizedBox(height: 12),
+                WhatsAppContactCard(branch: "Luwero", number: "256751792660"),
+              ],
+            ),
             const SizedBox(height: 30),
 
             // APP VERSION
