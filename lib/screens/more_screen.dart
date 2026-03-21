@@ -120,7 +120,7 @@ class _MoreScreenState extends State<MoreScreen> {
             // CONTACT US SECTION
             // =========================
 const Text(
-  "Contact Us",
+  "Contact a Branch",
   style: TextStyle(
     fontFamily: 'Poppins-Bold',
     fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ const SizedBox(height: 12),
 
 Column(
   children: const [
-    WhatsAppContactCard(branch: "Mbarara Branch", number: "256755015732"),
+    WhatsAppContactCard(branch: "Mbarara", number: "256755015732"),
     SizedBox(height: 12),
     WhatsAppContactCard(branch: "Ibanda", number: "256788146323"),
     SizedBox(height: 12),

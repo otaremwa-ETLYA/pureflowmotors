@@ -199,38 +199,28 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-                height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
-                Expanded(
-                    child: infoBox(
-                        "Paid",
-                        formatUGX(paid))),
-                const SizedBox(
-                    width: 10),
-                Expanded(
-                    child: infoBox(
-                        "Balance",
-                        formatUGX(balance))),
+                Expanded(child: infoBox("Paid",formatUGX(paid))),
+
+                const SizedBox(width: 10),
+                
+                Expanded(child: infoBox("Balance",formatUGX(balance))),
               ],
             ),
-            const SizedBox(
-                height: 15),
-            infoBox("Overdue",
-                formatUGX(overdue)),
-            const SizedBox(
-                height: 15),
-            infoBox("Due Next",
-                nextDue),
+            const SizedBox(height: 15),
+
+            infoBox("Overdue",formatUGX(overdue)),
+
+            const SizedBox(height: 15),
+
+            infoBox("Due Next",nextDue),
           ],
         ),
       ),
-      floatingActionButton:
-          FloatingActionButton(
-        backgroundColor:
-            const Color.fromARGB(
-                255, 16, 92, 177),
+      floatingActionButton:FloatingActionButton(
+        backgroundColor:const Color.fromARGB(255, 16, 92, 177),
         onPressed: loading
             ? null
             : () async {

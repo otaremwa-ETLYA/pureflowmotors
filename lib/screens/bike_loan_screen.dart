@@ -181,11 +181,11 @@ void dispose() {
   useSafeArea: true,
 
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
+    borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
   ),
 
   builder: (context) {
-    return Padding(
+    return Padding(  
       padding: const EdgeInsets.all(16),
       
         child: Container(
