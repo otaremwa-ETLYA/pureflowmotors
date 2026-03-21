@@ -181,7 +181,7 @@ void dispose() {
   useSafeArea: true,
 
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
   ),
 
   builder: (context) {
@@ -191,7 +191,7 @@ void dispose() {
         child: Container(
       width: double.infinity,
       // 🔥 this mimics mobile screen width even on web
-      constraints: const BoxConstraints(maxWidth: 420),
+      constraints: const BoxConstraints(maxWidth: 400),
 
       // 🔥 NO ConstrainedBox → prevents web "desktop centering"
       child: Column(
@@ -832,112 +832,112 @@ void dispose() {
             // ======================
             if (hasFullSelection)
               Column(crossAxisAlignment: CrossAxisAlignment.start,
-children: [
+              children: [
 
-  /// HEADER OUTSIDE
-  const Text(
-    "Loan Summary",
-    style: TextStyle(
-      fontFamily: 'Poppins-Bold',
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-      color: Colors.black87, // change if needed
-    ),
-  ),
+                /// HEADER OUTSIDE
+                const Text(
+                  "Loan Summary",
+                  style: TextStyle(
+                    fontFamily: 'Poppins-Bold',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black87, // change if needed
+                  ),
+                ),
 
-  const SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-  /// CONTAINER BELOW HEADER
-  Container(
-    width: double.infinity,
-    padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 16, 92, 177),
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(
-        color: const Color.fromARGB(255, 160, 144, 249),
-      ),
-    ),
+                /// CONTAINER BELOW HEADER
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 16, 92, 177),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 160, 144, 249),
+                    ),
+                  ),
 
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-        Text(
-          "Bike: ${selectedBike!.name}",
-          style: const TextStyle(
-            fontFamily: 'Poppins-Medium',
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 6),
+                      Text(
+                        "Bike: ${selectedBike!.name}",
+                        style: const TextStyle(
+                          fontFamily: 'Poppins-Medium',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
 
-        Text(
-          "Down Payment: ${formatUGX(selectedDownPayment!)}",
-          style: const TextStyle(
-            fontFamily: 'Poppins-Light',
-            fontWeight: FontWeight.w300,
-            fontSize: 14,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 6),
+                      Text(
+                        "Down Payment: ${formatUGX(selectedDownPayment!)}",
+                        style: const TextStyle(
+                          fontFamily: 'Poppins-Light',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
 
-        Text(
-          "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
-          style: const TextStyle(
-            fontFamily: 'Poppins-Light',
-            fontWeight: FontWeight.w300,
-            fontSize: 14,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 6),
+                      Text(
+                        "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
+                        style: const TextStyle(
+                          fontFamily: 'Poppins-Light',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
 
-        Text(
-          "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
-          style: const TextStyle(
-            fontFamily: 'Poppins-Light',
-            fontWeight: FontWeight.w300,
-            fontSize: 14,
-            color: Colors.white,
-          ),
-        ),
+                      Text(
+                        "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
+                        style: const TextStyle(
+                          fontFamily: 'Poppins-Light',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
 
-        const SizedBox(height: 5),
+                      const SizedBox(height: 5),
 
-        // =================================================
-        // 🔥 APPLY BUTTON (FIXED - WAS POSITIONED BEFORE)
-        // =================================================
-        Align(
-          alignment: Alignment.bottomRight,
-          child: ElevatedButton(
-            onPressed: () {
+                      // =================================================
+                      // 🔥 APPLY BUTTON (FIXED - WAS POSITIONED BEFORE)
+                      // =================================================
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: ElevatedButton(
+                          onPressed: () {
 
-              // store summary BEFORE popup
-              _bikeName = selectedBike!.name;
-              _downPaymentText = formatUGX(selectedDownPayment!);
-              _durationText =
-                  "${(selectedDuration! / 52).toStringAsFixed(1)} yrs";
-              _weeklyPaymentText =
-                  formatUGX(selectedWeeklyPayment!.round());
+                            // store summary BEFORE popup
+                            _bikeName = selectedBike!.name;
+                            _downPaymentText = formatUGX(selectedDownPayment!);
+                            _durationText =
+                                "${(selectedDuration! / 52).toStringAsFixed(1)} yrs";
+                            _weeklyPaymentText =
+                                formatUGX(selectedWeeklyPayment!.round());
 
-              _showApplyPopup();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: const Color.fromARGB(255, 16, 92, 177),
-            ),
-            child: const Text("Apply"),
-          ),
-        ),
+                            _showApplyPopup();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: const Color.fromARGB(255, 16, 92, 177),
+                          ),
+                          child: const Text("Apply"),
+                        ),
+                      ),
 
-      ],
-    ),
-  ),
-],)
+                    ],
+                  ),
+                ),
+            ],)
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Motorcycle Loans',
+      title: 'Pureflow Boda',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 
       // 👇 THIS is the important part
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // optional side background
+        backgroundColor: Colors.white, // optional side background
         body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
