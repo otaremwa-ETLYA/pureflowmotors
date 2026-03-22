@@ -202,7 +202,21 @@ void initState() {
                             height: 120,
                           ),
 
-                          const SizedBox(height: 30),
+                          const SizedBox(height: 8),
+
+                          const Text(
+                          "Sign In to Keep Track of Your Journey Towards Owmership",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Poppins-Bold',
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 119, 119, 119),
+                            height: 1.5,
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
 
                           TextField(
                             controller: bikeController,

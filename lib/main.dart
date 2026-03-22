@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/main_navigation.dart';
+import 'screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,16 +26,25 @@ class MyApp extends StatelessWidget {
 
       // 👇 THIS is the important part
       home: Scaffold(
-        backgroundColor: Colors.white, // optional side background
+        backgroundColor: Colors.white,
         body: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 400, // 👈 mobile width limit
-            ),
-            child: const MainNavigation(),
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: const WelcomeScreen(),
           ),
         ),
       ),
+      routes: {
+        '/main': (context) => Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: const MainNavigation(),
+            ),
+          ),
+        ),
+      },
     );
   }
 }

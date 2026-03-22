@@ -42,6 +42,8 @@ flutter:
     - lib/assets/bikes/
     - lib/assets/icon/app_icon.png
     - lib/assets/icon/whatsapp.png
+    - lib/assets/icon/pureflow_logo.png
+    - lib/assets/icon/welcome.png
 
 
   fonts:
