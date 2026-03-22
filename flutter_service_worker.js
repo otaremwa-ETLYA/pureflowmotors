@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "efba95c9a3a3d1821501565d342688bd",
-"assets/AssetManifest.bin.json": "3beed89be3826d429d0df64599cfd13c",
-"assets/AssetManifest.json": "ceaaa629292cdfdecb2afb51aaa0e066",
+const RESOURCES = {"assets/AssetManifest.bin": "8003d4ce60dbe50235111a97429197a8",
+"assets/AssetManifest.bin.json": "a6b5fa58b08212657d85df754d3c0157",
+"assets/AssetManifest.json": "3397aa163e141cf969427f00f7dc2477",
 "assets/FontManifest.json": "0178be171a43605316bcc854a778d01f",
 "assets/fonts/MaterialIcons-Regular.otf": "94de1797a0e2b7f3be6b10da84de0006",
 "assets/lib/assets/bikes/bajaj_boxer.png": "97629dcb4beda1be0627093da7db240e",
@@ -24,6 +24,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "efba95c9a3a3d1821501565d342688bd
 "assets/lib/assets/fonts/Poppins-Regular.ttf": "093ee89be9ede30383f39a899c485a82",
 "assets/lib/assets/fonts/Poppins-SemiBold.ttf": "6f1520d107205975713ba09df778f93f",
 "assets/lib/assets/icon/app_icon.png": "6fca841c69f44eeee61d5ec7d15637bf",
+"assets/lib/assets/icon/pureflow_logo.png": "5ae33de9f1d9941eb3b19515d179cd61",
+"assets/lib/assets/icon/welcome.png": "5b9a765c3e5280684fbb09baa4a18e1f",
 "assets/lib/assets/icon/whatsapp.png": "07c1ec575c225a92d6e6e7f23dc979d8",
 "assets/NOTICES": "0c01130fed913d8a7c8d5140334fa2a1",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "33b7d9392238c04c131b6ce224e13711",
@@ -41,7 +43,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "efba95c9a3a3d1821501565d342688bd
 "favicon.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "faviconn.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "83d881c1dbb6d6bcd6b42e274605b69c",
-"flutter_bootstrap.js": "af1b5d78a53399e43a5f4e1936d42f20",
+"flutter_bootstrap.js": "cf62ac3bcb2bf40a6735354fca72bc37",
 "icons/Icon-192.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "icons/Icon-1922.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "6fca841c69f44eeee61d5ec7d15637bf",
@@ -50,8 +52,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "efba95c9a3a3d1821501565d342688bd
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "f3cb4b1e82afb6b6e57acab755f02beb",
 "/": "f3cb4b1e82afb6b6e57acab755f02beb",
-"main.dart.js": "35c5576f37eb5267eea348b429d3164e",
-"manifest.json": "1ecfa9e20ec3f15f96ce67b73c9eefca",
+"main.dart.js": "4da53a7774226fd2b0c2480cdbdda402",
+"manifest.json": "ba56bd2e35e726509c4637b412b5c96e",
 "version.json": "59c8f5211bb175d574c68b3a9c7ed593"};
 // The application shell files that are downloaded before a service worker can
 // start.
