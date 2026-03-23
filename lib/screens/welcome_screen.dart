@@ -155,7 +155,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       backgroundColor: const Color.fromARGB(255, 16, 92, 177),
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                     child: const Text(
@@ -178,11 +178,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     mainAxisSize: MainAxisSize.min,
     children: [
       const Text(
-        "Continue",
+        "Log in",
         style: TextStyle(
           color: Colors.black,
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
           fontSize: 15,
-          fontWeight: FontWeight.w500,
         ),
       ),
       const SizedBox(width: 6),
