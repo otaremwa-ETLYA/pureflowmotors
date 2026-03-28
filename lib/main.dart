@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pureflow Boda',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 242, 241, 241),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color.fromARGB(255, 16, 92, 177),
           selectedItemColor: Colors.white,
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/main': (context) => Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: const Color.fromARGB(255, 242, 241, 241),
           body: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 400),

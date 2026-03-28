@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'sign_in_screen.dart';
+import 'active_loan_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'main_navigation.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -153,11 +156,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       child: ElevatedButton(
                         onPressed: goToMain,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(
-                            255,
-                            16,
-                            92,
-                            177,
+                          backgroundColor: const Color.fromARGB(255,16,92,177,
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           shape: RoundedRectangleBorder(
@@ -179,18 +178,48 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
                     /// 🔗 CONTINUE TEXT
                     GestureDetector(
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => SignInScreen(
-          onLoginSuccess: () {
-            Navigator.pop(context); // return after login
-          },
+  onTap: () async {
+  final prefs = await SharedPreferences.getInstance();
+  final isLogged =
+      prefs.getString("name") != null &&
+      prefs.getString("bike") != null;
+
+if (isLogged) {
+  // 👉 Go directly to Active Loan screen
+  Navigator.push(  context,
+  MaterialPageRoute(
+    builder: (_) => Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: const MainNavigation(initialIndex: 1),
         ),
       ),
-    );
-  },
+    ),
+  ),);
+} else {
+  // 👉 Go to Sign In screen
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: SignInScreen(
+              onLoginSuccess: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+},
   child: Row(
     mainAxisSize: MainAxisSize.min,
     children: [
