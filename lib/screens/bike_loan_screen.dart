@@ -510,7 +510,7 @@ void dispose() {
                   "Choose a bike",
                   style: TextStyle(
                     fontFamily: 'Poppins-SemiBold',
-                    //fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w300,
                     color: Colors.black54,
                   ),
                 ),
@@ -522,7 +522,7 @@ void dispose() {
                       bike.name,
                       style: const TextStyle(
                         fontFamily: 'Poppins-SemiBold',
-                        //fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
                   );
@@ -601,8 +601,8 @@ void dispose() {
                               "Select",
                               style: TextStyle(
                                 fontFamily: 'Poppins-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black54,
+                                fontWeight: FontWeight.w300,
+                                color: const Color.fromARGB(255, 0, 0, 0),
                               ),
                             ),
                             value: selectedDownPayment,
@@ -689,8 +689,8 @@ void dispose() {
                               "Select",
                               style: TextStyle(
                                 fontFamily: 'Poppins-Semibold',
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black54,
+                                fontWeight: FontWeight.w300,
+                                color: const Color.fromARGB(255, 0, 0, 0),
                               ),
                             ),
                             value: selectedDuration,
@@ -777,8 +777,8 @@ void dispose() {
                               "Select",
                               style: TextStyle(
                                 fontFamily: 'Poppins-Semibold',
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black54,
+                                fontWeight: FontWeight.w300,
+                                color: const Color.fromARGB(255, 0, 0, 0),
                               ),
                             ),
                             value: selectedWeeklyPayment,
