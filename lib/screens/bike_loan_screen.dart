@@ -362,43 +362,86 @@ void dispose() {
     return Scaffold(
       //backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-        //centerTitle: true,
-       title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-
-          Text(
-            "Asset Financing",
-            style: TextStyle(
-              fontFamily: 'Poppins-Bold',
-              fontWeight: FontWeight.bold,
-              fontSize: 22, // AppBar works better around 20–24
-              color: Colors.white,
-            ),
-          ),
-
-          SizedBox(height: 2),
-
-          Text(
-            "Kingdom Initiatives Transforming Communities",
-            style: TextStyle(
-              fontFamily: 'Poppins-Regular',
-              fontWeight: FontWeight.w400,
-              fontSize: 11,
-              color: Colors.white70,
-            ),
-          ),
-        ],
+  toolbarHeight: 85, // taller AppBar
+  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+  elevation: 15, // subtle shadow
+  shadowColor: Colors.black.withOpacity(0.3),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(
+      bottom: Radius.circular(10), // rounded bottom corners
+    ),
+  ),
+  title: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: const [
+      Text(
+        "Asset Financing",
+        style: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+          color: Colors.white,
+        ),
       ),
+      SizedBox(height: 2),
+      Text(
+        "Kingdom Initiatives Transforming Communities",
+        style: TextStyle(
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
+          color: Colors.white70,
+        ),
       ),
+    ],
+  ),
+),
+
+
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
+             const SizedBox(height: 8),
+             Row(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 16, 92, 177),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: const Text(
+        "To Get Started",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontFamily: 'Poppins-Bold',
+        ),
+      ),
+    ),
+
+    const SizedBox(width: 10),
+
+    const Expanded(
+      child: Text(
+        "Choose a Bike And The Desired Loan Specifications to Begin Your Journey Towards Ownership. Blessings!",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 0, 0, 0),
+          height: 1.5,
+        ),
+      ),
+    ),
+  ],
+),
 
 
             SizedBox(
@@ -406,7 +449,7 @@ void dispose() {
   child: Center(
     child: ConstrainedBox(
       constraints: const BoxConstraints(
-        maxWidth: 400, // ← limit width here
+        //maxWidth: 400, // ← limit width here
       ),
       child: PageView.builder(
         controller: bikePageController,
@@ -493,7 +536,7 @@ void dispose() {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 255, 255, 255),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
                 boxShadow: [
                     BoxShadow(
@@ -564,264 +607,272 @@ void dispose() {
               Row(
                 children: [
                   // Down Payment
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Down Payment(ugx)",
-                          style: TextStyle(
-                            fontFamily: 'Poppins-Regular',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+Expanded(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Down Payment(ugx)",
+        style: TextStyle(
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
+          fontSize: 10,
+          color: Colors.black87,
+        ),
+      ),
+      const SizedBox(height: 6),
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8), // reduced padding
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.transparent),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: DropdownButton<int>(
+          isExpanded: true,
+          underline: const SizedBox(),
+          dropdownColor: Colors.white, // dropdown list background
+          icon: const Icon( // visible arrow
+            Icons.arrow_drop_down,
+            color: Colors.grey,
+          ),
 
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 6,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: DropdownButton<int>(
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            icon: const SizedBox.shrink(),
-                            hint: Text(
-                              "Select",
-                              style: TextStyle(
-                                fontFamily: 'Poppins-SemiBold',
-                                fontWeight: FontWeight.w300,
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                              ),
-                            ),
-                            value: selectedDownPayment,
-                            items: getAvailableDownPayments().map((dp) {
-                              return DropdownMenuItem<int>(
-                                value: dp,
-                                child: Text(
-                                  formatUGX(dp),
-                                  style: const TextStyle(
-                                    fontFamily: 'Poppins-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
+          hint: const Text(
+            "Select",
+            style: TextStyle(
+              fontFamily: 'Poppins-Semibold',
+              fontWeight: FontWeight.w400,
+              fontSize: 12, // smaller text
+              color: Colors.grey, // grey color
+            ),
+          ),
 
-                              final wasFullMatch = isFullMatch;
+          value: selectedDownPayment,
 
-                              setState(() {
+          items: getAvailableDownPayments().map((dp) {
+            return DropdownMenuItem<int>(
+              value: dp,
+              child: Text(
+                formatUGX(dp),
+                style: const TextStyle(
+                  fontFamily: 'Poppins-Semibold',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            );
+          }).toList(),
 
-                                // user changing mind after match
-                                if (wasFullMatch) {
+          onChanged: (value) {
+            final wasFullMatch = isFullMatch;
 
-                                  selectedDuration = null;
-                                  selectedWeeklyPayment = null;
+            setState(() {
+              // user changing mind after match
+              if (wasFullMatch) {
+                selectedDuration = null;
+                selectedWeeklyPayment = null;
+                freezeFiltering = false; // resume filtering
+              }
 
-                                  freezeFiltering = false; // resume filtering
-                                }
+              selectedDownPayment = value;
 
-                                selectedDownPayment = value;
-
-                                // new full match reached
-                                if (isFullMatch) {
-                                  freezeFiltering = true;
-                                }
-
-                              });
-
-                              },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              // new full match reached
+              if (isFullMatch) {
+                freezeFiltering = true;
+              }
+            });
+          },
+        ),
+      ),
+    ],
+  ),
+),
 
                   const SizedBox(width: 12),
 
                   // Duration
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Duration(Years)",
-                          style: TextStyle(
-                            fontFamily: 'Poppins-Regular',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+Expanded(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Duration(Years)",
+        style: TextStyle(
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
+          fontSize: 10,
+          color: Colors.black87,
+        ),
+      ),
+      const SizedBox(height: 6),
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8), // reduced padding
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.transparent),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: DropdownButton<int>(
+          isExpanded: true,
+          underline: const SizedBox(),
+          dropdownColor: Colors.white, // dropdown list background
+          icon: const Icon( // visible arrow
+            Icons.arrow_drop_down,
+            color: Colors.grey,
+          ),
 
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 6,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: DropdownButton<int>(
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            icon: const SizedBox.shrink(),
-                            hint: Text(
-                              "Select",
-                              style: TextStyle(
-                                fontFamily: 'Poppins-Semibold',
-                                fontWeight: FontWeight.w300,
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                              ),
-                            ),
-                            value: selectedDuration,
-                            items: getAvailableDurations().map((dur) {
-                              return DropdownMenuItem<int>(
-                                value: dur,
-                                child: Text(
-                                  "${(dur / 52).toStringAsFixed(1)} yrs",
-                                  style: const TextStyle(
-                                    fontFamily: 'Poppins-Semibold',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
+          hint: const Text(
+            "Select",
+            style: TextStyle(
+              fontFamily: 'Poppins-Semibold',
+              fontWeight: FontWeight.w400,
+              fontSize: 12, // smaller text
+              color: Colors.grey, // grey color
+            ),
+          ),
 
-                              final wasFullMatch = isFullMatch;
+          value: selectedDuration,
 
-                              setState(() {
+          items: getAvailableDurations().map((dur) {
+            return DropdownMenuItem<int>(
+              value: dur,
+              child: Text(
+                "${(dur / 52).toStringAsFixed(1)} yrs",
+                style: const TextStyle(
+                  fontFamily: 'Poppins-Semibold',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            );
+          }).toList(),
 
-                                if (wasFullMatch) {
+          onChanged: (value) {
+            final wasFullMatch = isFullMatch;
 
-                                  selectedDownPayment = null;
-                                  selectedWeeklyPayment = null;
+            setState(() {
+              if (wasFullMatch) {
+                selectedDownPayment = null;
+                selectedWeeklyPayment = null;
+                freezeFiltering = false;
+              }
 
-                                  freezeFiltering = false;
-                                }
+              selectedDuration = value;
 
-                                selectedDuration = value;
-
-                                if (isFullMatch) {
-                                  freezeFiltering = true;
-                                }
-
-                              });
-
-                              },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              if (isFullMatch) {
+                freezeFiltering = true;
+              }
+            });
+          },
+        ),
+      ),
+    ],
+  ),
+),
                   
 
                   const SizedBox(width: 12),
 
                   // Weekly Payment
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Weekly Payment(ugx)",
-                          style: TextStyle(
-                            fontFamily: 'Poppins-Regular',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 254, 254),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color.fromARGB(0, 144, 202, 249)!),
+Expanded(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Weekly Payment(ugx)",
+        style: TextStyle(
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
+          fontSize: 10,
+          color: Colors.black87,
+        ),
+      ),
+      const SizedBox(height: 6),
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8), // reduced padding
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.transparent),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: DropdownButton<double>(
+          isExpanded: true,
+          underline: const SizedBox(),
+          dropdownColor: Colors.white, // dropdown list background
+          icon: const Icon( // arrow icon added
+            Icons.arrow_drop_down,
+            color: Colors.grey,
+          ),
 
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 6,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: DropdownButton<double>(
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            icon: const SizedBox.shrink(),
+          hint: const Text(
+            "Select",
+            style: TextStyle(
+              fontFamily: 'Poppins-Semibold',
+              fontWeight: FontWeight.w400,
+              fontSize: 12, // smaller text
+              color: Colors.grey, // grey color
+            ),
+          ),
 
-                            hint: Text(
-                              "Select",
-                              style: TextStyle(
-                                fontFamily: 'Poppins-Semibold',
-                                fontWeight: FontWeight.w300,
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                              ),
-                            ),
-                            value: selectedWeeklyPayment,
-                            items: getAvailableWeeklyPayments().map((wp) {
-                              return DropdownMenuItem<double>(
-                                value: wp,
-                                child: Text(
-                                  formatUGX(wp.toInt()),
-                                  style: const TextStyle(
-                                    fontFamily: 'Poppins-Semibold',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (double? value) {
+          value: selectedWeeklyPayment,
 
-                              final wasFullMatch = isFullMatch;
+          items: getAvailableWeeklyPayments().map((wp) {
+            return DropdownMenuItem<double>(
+              value: wp,
+              child: Text(
+                formatUGX(wp.toInt()),
+                style: const TextStyle(
+                  fontFamily: 'Poppins-Semibold',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            );
+          }).toList(),
 
-                              setState(() {
+          onChanged: (double? value) {
+            final wasFullMatch = isFullMatch;
 
-                                if (wasFullMatch) {
+            setState(() {
+              if (wasFullMatch) {
+                selectedDownPayment = null;
+                selectedDuration = null;
+                freezeFiltering = false;
+              }
 
-                                  selectedDownPayment = null;
-                                  selectedDuration = null;
+              selectedWeeklyPayment = value;
 
-                                  freezeFiltering = false;
-                                }
-
-                                selectedWeeklyPayment = value;
-
-                                if (isFullMatch) {
-                                  freezeFiltering = true;
-                                }
-
-                              });
-
-                              },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              if (isFullMatch) {
+                freezeFiltering = true;
+              }
+            });
+          },
+        ),
+      ),
+    ],
+  ),
+),
                 ],
               ),
 
@@ -840,7 +891,7 @@ void dispose() {
                   style: TextStyle(
                     fontFamily: 'Poppins-Bold',
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 14,
                     color: Colors.black87, // change if needed
                   ),
                 ),
@@ -849,94 +900,97 @@ void dispose() {
 
                 /// CONTAINER BELOW HEADER
                 Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 16, 92, 177),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 160, 144, 249),
-                    ),
-                  ),
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  decoration: BoxDecoration(
+    color: const Color.fromARGB(255, 16, 92, 177),
+    borderRadius: BorderRadius.circular(5),
+    border: Border.all(
+      color: const Color.fromARGB(255, 160, 144, 249),
+    ),
+  ),
+  child: Stack(
+    children: [
+      // -------------------
+      // CARD CONTENT
+      // -------------------
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Bike: ${selectedBike!.name}",
+            style: const TextStyle(
+              fontFamily: 'Poppins-Medium',
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            "Down Payment: ${formatUGX(selectedDownPayment!)}",
+            style: const TextStyle(
+              fontFamily: 'Poppins-Light',
+              fontWeight: FontWeight.w300,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
+            style: const TextStyle(
+              fontFamily: 'Poppins-Light',
+              fontWeight: FontWeight.w300,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
+            style: const TextStyle(
+              fontFamily: 'Poppins-Light',
+              fontWeight: FontWeight.w300,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 16), // extra spacing so button doesn't cover text
+        ],
+      ),
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+      // -------------------
+      // APPLY BUTTON (OVERLAY)
+      // -------------------
+      Positioned(
+        bottom: 0,
+        right: 0,
+        child: ElevatedButton(
+          onPressed: () {
+            // store summary BEFORE popup
+            _bikeName = selectedBike!.name;
+            _downPaymentText = formatUGX(selectedDownPayment!);
+            _durationText =
+                "${(selectedDuration! / 52).toStringAsFixed(1)} yrs";
+            _weeklyPaymentText =
+                formatUGX(selectedWeeklyPayment!.round());
 
-                      Text(
-                        "Bike: ${selectedBike!.name}",
-                        style: const TextStyle(
-                          fontFamily: 'Poppins-Medium',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-
-                      Text(
-                        "Down Payment: ${formatUGX(selectedDownPayment!)}",
-                        style: const TextStyle(
-                          fontFamily: 'Poppins-Light',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-
-                      Text(
-                        "Duration: ${(selectedDuration! / 52).toStringAsFixed(1)} yrs",
-                        style: const TextStyle(
-                          fontFamily: 'Poppins-Light',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-
-                      Text(
-                        "Weekly Payment: ${formatUGX(selectedWeeklyPayment!.round())}",
-                        style: const TextStyle(
-                          fontFamily: 'Poppins-Light',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                      ),
-
-                      const SizedBox(height: 5),
-
-                      // =================================================
-                      // 🔥 APPLY BUTTON (FIXED - WAS POSITIONED BEFORE)
-                      // =================================================
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: ElevatedButton(
-                          onPressed: () {
-
-                            // store summary BEFORE popup
-                            _bikeName = selectedBike!.name;
-                            _downPaymentText = formatUGX(selectedDownPayment!);
-                            _durationText =
-                                "${(selectedDuration! / 52).toStringAsFixed(1)} yrs";
-                            _weeklyPaymentText =
-                                formatUGX(selectedWeeklyPayment!.round());
-
-                            _showApplyPopup();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color.fromARGB(255, 16, 92, 177),
-                          ),
-                          child: const Text("Apply"),
-                        ),
-                      ),
-
-                    ],
-                  ),
-                ),
+            _showApplyPopup();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            foregroundColor: const Color.fromARGB(255, 16, 92, 177),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5), // radius 5
+            ),
+          ),
+          child: const Text("Apply"),
+        ),
+      ),
+    ],
+  ),
+),
             ],)
           ],
         ),

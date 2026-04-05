@@ -23,28 +23,31 @@ class MyApp extends StatelessWidget {
           selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-
-      // 👇 THIS is the important part
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
+      builder: (context, child) {
+        // ✅ Apply max width globally to all screens
+        return Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 400),
-            child: const WelcomeScreen(),
+            child: child,
           ),
-        ),
-      ),
-      routes: {
-        '/main': (context) => Scaffold(
-          backgroundColor: const Color.fromARGB(255, 242, 241, 241),
-          body: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: const MainNavigation(),
-            ),
-          ),
-        ),
+        );
       },
+      // Start with WelcomeScreen
+      home: const WelcomeScreen(),
+      // Named routes
+        routes: {
+    '/main': (context) => MainNavigation(),
+  },
+  onGenerateRoute: (settings) {
+    if (settings.name == '/main') {
+      final screen = settings.arguments as Widget?;
+      return MaterialPageRoute(
+        builder: (_) => MainNavigation(initialScreen: screen),
+      );
+    }
+    return null;
+  },
     );
   }
 }
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:math';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -10,14 +11,21 @@ class MoreScreen extends StatefulWidget {
 }
 
 class _MoreScreenState extends State<MoreScreen> {
+    final List<String> videoIds = [
+    'aIP0aQaxvZM',
+    'GTkc1DXO6Zk',
+    'QS8m2ngQSkk',
+    'A6dmbTiBbMI',
+  ];
   late YoutubePlayerController controller;
 
   @override
   void initState() {
     super.initState();
+    final randomVideoId = videoIds[Random().nextInt(videoIds.length)];
 
     controller = YoutubePlayerController.fromVideoId(
-      videoId: 'aIP0aQaxvZM',
+      videoId: randomVideoId,
       autoPlay: false,
       params: const YoutubePlayerParams(
         showControls: true,
@@ -50,32 +58,41 @@ class _MoreScreenState extends State<MoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              "Asset Financing",
-              style: TextStyle(
-                fontFamily: 'Poppins-Bold',
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 2),
-            Text(
-              "Kingdom Initiatives Transforming Communities",
-              style: TextStyle(
-                fontFamily: 'Poppins-Regular',
-                fontWeight: FontWeight.w400,
-                fontSize: 11,
-                color: Colors.white70,
-              ),
-            ),
-          ],
+  toolbarHeight: 85, // taller AppBar
+  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+  elevation: 15, // subtle shadow
+  shadowColor: Colors.black.withOpacity(0.3),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(
+      bottom: Radius.circular(10), // rounded bottom corners
+    ),
+  ),
+  title: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: const [
+      Text(
+        "Asset Financing",
+        style: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+          color: Colors.white,
         ),
       ),
+      SizedBox(height: 2),
+      Text(
+        "Kingdom Initiatives Transforming Communities",
+        style: TextStyle(
+          fontFamily: 'Poppins-Regular',
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
+          color: Colors.white70,
+        ),
+      ),
+    ],
+  ),
+),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -90,12 +107,12 @@ class _MoreScreenState extends State<MoreScreen> {
               style: TextStyle(
                 fontFamily: 'Poppins-Bold',
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 12),
             ClipRRect(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(5),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
                 child: YoutubePlayer(controller: controller),
@@ -124,7 +141,7 @@ const Text(
   style: TextStyle(
     fontFamily: 'Poppins-Bold',
     fontWeight: FontWeight.bold,
-    fontSize: 18,
+    fontSize: 14,
   ),
 ),
 const SizedBox(height: 12),
@@ -197,7 +214,7 @@ class StatsCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.08),
@@ -261,7 +278,7 @@ class WhatsAppContactCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.08),

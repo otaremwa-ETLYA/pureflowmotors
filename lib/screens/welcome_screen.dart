@@ -3,6 +3,7 @@ import 'sign_in_screen.dart';
 import 'active_loan_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'main_navigation.dart';
+import 'bike_loan_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -72,9 +73,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
   }
 
-  void goToMain() {
-    Navigator.pushReplacementNamed(context, '/main');
-  }
+void goToMain() {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => const MainNavigation(), // optional: pass initialScreen if needed
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -154,52 +160,50 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: goToMain,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255,16,92,177,
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 18),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        child: const Text(
-                          "Get Started",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+  onPressed: () {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const MainNavigation()),
+      (route) => false, // remove all previous routes
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+    padding: const EdgeInsets.symmetric(vertical: 18),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5),
+    ),
+  ),
+  child: const Text(
+    "Get Started",
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 17,
+      fontWeight: FontWeight.w400,
+    ),
+  ),
+),
                     ),
 
                     const SizedBox(height: 10),
 
                     /// 🔗 CONTINUE TEXT
                     GestureDetector(
-  onTap: () async {
-  final prefs = await SharedPreferences.getInstance();
-  final isLogged =
-      prefs.getString("name") != null &&
-      prefs.getString("bike") != null;
+                      onTap: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        final isLogged =
+                            prefs.getString("name") != null &&
+                            prefs.getString("bike") != null;
 
-if (isLogged) {
-  // 👉 Go directly to Active Loan screen
-  Navigator.push(  context,
-  MaterialPageRoute(
-    builder: (_) => Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: const MainNavigation(initialIndex: 1),
-        ),
-      ),
-    ),
-  ),);
+                        if (isLogged) {
+  // 👉 Already logged in → open MainNavigation normally
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (_) => const MainNavigation()),
+    (route) => false, // remove all previous routes
+  );
 } else {
-  // 👉 Go to Sign In screen
+  // 👉 Not logged in → show SignInScreen
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -210,47 +214,52 @@ if (isLogged) {
             constraints: const BoxConstraints(maxWidth: 400),
             child: SignInScreen(
               onLoginSuccess: () {
-                Navigator.pop(context);
+                // 👉 After login → open MainNavigation as root
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainNavigation()),
+                  (route) => false,
+                );
               },
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-},
-  child: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      const Text(
-        "Sign In",
-        style: TextStyle(
-          color: Colors.black,
-          fontFamily: 'Poppins-Regular',
-          fontWeight: FontWeight.w400,
-          fontSize: 15,
-        ),
-      ),
-      const SizedBox(width: 6),
-      TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0, end: 6),
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeInOut,
-        builder: (context, value, child) {
-          return Transform.translate(
-            offset: Offset(value, 0),
-            child: const Icon(
-              Icons.arrow_forward_rounded,
-              size: 18,
-              color: Colors.black,
-            ),
-          );
-        },
-      ),
-    ],
-  ),
-),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            "Sign In",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins-Regular',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          TweenAnimationBuilder<double>(
+                            tween: Tween(begin: 0, end: 6),
+                            duration: const Duration(milliseconds: 800),
+                            curve: Curves.easeInOut,
+                            builder: (context, value, child) {
+                              return Transform.translate(
+                                offset: Offset(value, 0),
+                                child: const Icon(
+                                  Icons.arrow_forward_rounded,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

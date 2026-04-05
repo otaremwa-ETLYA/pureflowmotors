@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'sign_up_screen.dart';
+import 'main_navigation.dart';
+import 'active_loan_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   final VoidCallback onLoginSuccess;
@@ -127,8 +129,13 @@ void initState() {
 
       setState(() => loading = false);
 
-      widget.onLoginSuccess();
-      Navigator.pop(context);
+Navigator.pushAndRemoveUntil(
+  context,
+  MaterialPageRoute(
+    builder: (_) => const MainNavigation(),
+  ),
+  (route) => false, // removes all previous routes
+);
     } catch (e) {
       setState(() {
         errorText = "Connection error";

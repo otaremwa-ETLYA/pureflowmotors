@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'sign_in_screen.dart';
+import 'main_navigation.dart';
 
 class PaymentsScreen extends StatefulWidget {
   const PaymentsScreen({super.key});
@@ -84,20 +85,27 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
 
     setState(() => loading = false);
   }
-  Future logout() async {
-    final prefs =
-        await SharedPreferences.getInstance();
-    await prefs.clear();
+Future<void> logout() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (_) =>
-            SignInScreen(onLoginSuccess: () {}),
+  // Redirect to SignInScreen; after login → MainNavigation root
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (_) => SignInScreen(
+        onLoginSuccess: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const MainNavigation()),
+            (route) => false,
+          );
+        },
       ),
-      (route) => false,
-    );
-  }
+    ),
+    (route) => false,
+  );
+}
 
   String formatDate(String dateStr) {
   try {
@@ -118,7 +126,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
@@ -154,31 +162,46 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 16, 92, 177),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome, $userName",
-              style: const TextStyle(fontSize: 14, color: Colors.white70),
-            ),
-            Text(
-              "Bike $bikeNumber",
-              style: const TextStyle(
-                  fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-          ],
+  toolbarHeight: 85, // taller AppBar
+  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+  elevation: 15, // subtle shadow
+  shadowColor: Colors.black.withOpacity(0.3),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(
+      bottom: Radius.circular(10), // rounded bottom corners
+    ),
+  ),
+  title: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Text(
+        "Welcome, $userName",
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.white70,
         ),
-         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white, // ✅ white logout icon
-            ),
-            onPressed: logout,
-          )
-        ],
       ),
+      Text(
+        "Bike $bikeNumber",
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    ],
+  ),
+  actions: [
+    IconButton(
+      icon: const Icon(
+        Icons.logout,
+        color: Colors.white,
+      ),
+      onPressed: logout,
+    )
+  ],
+),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -189,7 +212,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
               style: TextStyle(
                 fontFamily: 'Poppins-Bold',
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 20),

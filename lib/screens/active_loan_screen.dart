@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'sign_in_screen.dart';
+import 'main_navigation.dart';
 
 class ActiveLoanScreen extends StatefulWidget {
   final String bikeNumber;
@@ -82,20 +83,27 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
     }
   }
 
-  Future logout() async {
-    final prefs =
-        await SharedPreferences.getInstance();
-    await prefs.clear();
+Future<void> logout() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (_) =>
-            SignInScreen(onLoginSuccess: () {}),
+  // Redirect to SignInScreen; after login → MainNavigation root
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (_) => SignInScreen(
+        onLoginSuccess: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const MainNavigation()),
+            (route) => false,
+          );
+        },
       ),
-      (route) => false,
-    );
-  }
+    ),
+    (route) => false,
+  );
+}
 
   Widget infoBox(String title, String value) {
     return Container(
@@ -103,7 +111,7 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(
             color:
@@ -145,44 +153,43 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:
-            const Color.fromARGB(
-                255, 16, 92, 177),
-        iconTheme:
-            const IconThemeData(
-                color: Colors.white), // makes icons white
-        title: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome, $userName",
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-              ),
-            ),
-            Text(
-              "Bike ${widget.bikeNumber}",
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight:
-                    FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
+  toolbarHeight: 85, // taller height
+  backgroundColor: const Color.fromARGB(255, 16, 92, 177),
+  iconTheme: const IconThemeData(color: Colors.white),
+  elevation: 15, // shadow
+  shadowColor: Colors.black.withOpacity(0.3),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(
+      bottom: Radius.circular(10), // more rounded
+    ),
+  ),
+  title: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Welcome, $userName",
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.white70,
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white, // ✅ white logout icon
-            ),
-            onPressed: logout,
-          )
-        ],
       ),
+      Text(
+        "Bike ${widget.bikeNumber}",
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    ],
+  ),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.logout, color: Colors.white),
+      onPressed: logout,
+    )
+  ],
+),
       body: Padding(
         padding:
             const EdgeInsets.all(16),
@@ -195,7 +202,7 @@ class _ActiveLoanScreenState extends State<ActiveLoanScreen> {
                 style: TextStyle(
                   fontFamily: 'Poppins-Bold',
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 14,
                 ),
               ),
             ),
