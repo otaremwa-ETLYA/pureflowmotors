@@ -69,6 +69,7 @@ class WhatsAppBranchOption extends StatelessWidget {
 
 
 class _BikeLoanScreenState extends State<BikeLoanScreen> {
+  int currentIndex = 0; // stores the index of the currently selected bike
 
   late PageController bikePageController;
   bool freezeFiltering = false;
@@ -93,30 +94,17 @@ String _bikeName = "";
 
 @override
 void initState() {
-
   super.initState();
+
+  // ✅ Start at the first bike
+  currentIndex = 0;
+  selectedBike = bikes.isNotEmpty ? bikes[0] : null;
 
   bikePageController = PageController(
     viewportFraction: 0.7,
-    initialPage: 1000, // fake infinite scroll
+    initialPage: 0, // ✅ first page
   );
-
-  // ⭐ VERY IMPORTANT
-  // Select first bike AFTER screen builds
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-
-    final bikeIndex = 1000 % bikes.length;
-
-    setState(() {
-
-      selectedBike = bikes[bikeIndex];
-
-    });
-
-  });
-
 }
-
 @override
 void dispose() {
   bikePageController.dispose();
@@ -453,26 +441,27 @@ void dispose() {
       ),
       child: PageView.builder(
         controller: bikePageController,
+        itemCount: bikes.length, 
 
         onPageChanged: (index) {
-          final bikeIndex = index % bikes.length;
+        setState(() {
+          currentIndex = index;
+          selectedBike = bikes[currentIndex];
 
-          setState(() {
-            selectedBike = bikes[bikeIndex];
+          // Reset dependent selections
+          selectedDownPayment = null;
+          selectedDuration = null;
+          selectedWeeklyPayment = null;
+          freezeFiltering = false;
+        });
+},
 
-            selectedDownPayment = null;
-            selectedDuration = null;
-            selectedWeeklyPayment = null;
-
-            freezeFiltering = false;
-          });
-        },
 
         itemBuilder: (context, index) {
-          final bike = bikes[index % bikes.length];
-
-          final isSelected =
-              selectedBike?.name == bike.name;
+          final bike = bikes[index]; // no modulo
+          final isSelected = index == currentIndex;
+          
+          
 
           return AnimatedContainer(
             duration: const Duration(milliseconds: 300),
@@ -571,30 +560,24 @@ void dispose() {
                   );
                 }).toList(),
                 onChanged: (bike) {
+                final index = bikes.indexOf(bike!);
+                setState(() {
+                  currentIndex = index;
+                  selectedBike = bike;
 
-                  setState(() {
+                  // Reset dependent selections
+                  selectedDownPayment = null;
+                  selectedDuration = null;
+                  selectedWeeklyPayment = null;
+                  freezeFiltering = false;
+                });
 
-                    selectedBike = bike;
-
-                    selectedDownPayment = null;
-                    selectedDuration = null;
-                    selectedWeeklyPayment = null;
-
-                    // VERY IMPORTANT
-                    freezeFiltering = false;
-
-                    // move gallery
-                    final index = bikes.indexOf(bike!);
-
-                    bikePageController.animateToPage(
-                      1000 + index,
-                      duration: const Duration(milliseconds:400),
-                      curve: Curves.easeInOut,
-                    );
-
-                    });
-
-                },
+                bikePageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+              }
               ),
             ),
 

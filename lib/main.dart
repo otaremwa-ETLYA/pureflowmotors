@@ -1,8 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/main_navigation.dart';
 import 'screens/welcome_screen.dart';
+import 'data/bikes_data.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+    await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyDOW8...your_api_key...",
+      authDomain: "activeloaninfo.firebaseapp.com",
+      databaseURL: "https://activeloaninfo-default-rtdb.firebaseio.com",
+      projectId: "activeloaninfo",
+      storageBucket: "activeloaninfo.firebasestorage.app",
+      messagingSenderId: "689636555223",
+      appId: "1:689636555223:web:ce9883375a92238b443392",
+      measurementId: "G-H9XPKJHWT0",
+    ),
+  );
+  bikesRepository.startListening();
+
   runApp(const MyApp());
 }
 

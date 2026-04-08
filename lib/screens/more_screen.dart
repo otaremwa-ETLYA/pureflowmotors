@@ -241,6 +241,7 @@ class StatsCard extends StatelessWidget {
                 fontFamily: 'Poppins-SemiBold',
                 fontSize: 16,
                 color: Colors.black87,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
@@ -273,43 +274,67 @@ class WhatsAppContactCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: openWhatsApp,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 6,
-              offset: const Offset(0, 3),
-            ),
-          ],
+  onTap: openWhatsApp, // your function to launch WhatsApp
+  child: Container(
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(5),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.08),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
         ),
-        child: Row(
-          children: [
-            // WhatsApp PNG Icon
-            Image.asset(
-              "lib/assets/icon/whatsapp.png", // <-- add your png here
-              width: 28,
-              height: 28,
-            ),
+      ],
+    ),
+    child: Row(
+      children: [
+        // WhatsApp Icon
+        Image.asset(
+          "lib/assets/icon/whatsapp.png",
+          width: 28,
+          height: 28,
+          color: Colors.green,
+        ),
 
-            const SizedBox(width: 12),
+        const SizedBox(width: 12),
 
-            // Branch Name ONLY (no number)
-            Text(
-              branch,
-              style: const TextStyle(
-                fontFamily: 'Poppins-SemiBold',
-                fontSize: 16,
-                color: Colors.black87,
+        // Branch Name + Number
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                branch,
+                style: const TextStyle(
+                  fontFamily: 'Poppins-SemiBold',
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                number, // <-- use your final String number here
+                style: const TextStyle(
+                  fontFamily: 'Poppins-Regular',
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+
+        // Optional arrow for UX hint
+        Icon(
+          Icons.arrow_forward_ios,
+          size: 16,
+          color: Colors.grey[400],
+        ),
+      ],
+    ),
+  ),
+);
+}
 }
