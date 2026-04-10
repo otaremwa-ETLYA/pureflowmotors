@@ -127,8 +127,8 @@ class _MoreScreenState extends State<MoreScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 StatsCard(title: "Members Served", value: "10,000+"),
-                StatsCard(title: "Branches Opened", value: "14+"),
-                StatsCard(title: "Districts Reached", value: "104+"),
+                StatsCard(title: "Branches Opened", value: "15+"),
+                StatsCard(title: "Districts Reached", value: "100+"),
               ],
             ),
             const SizedBox(height: 30),

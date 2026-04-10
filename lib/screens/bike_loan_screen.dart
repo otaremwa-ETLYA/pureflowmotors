@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/bike.dart';
-import '../models/loan_option.dart';
+import '../models/loan_option.dart'; 
 import '../data/bikes_data.dart';
 import '../utils/formatters.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,6 +69,7 @@ class WhatsAppBranchOption extends StatelessWidget {
 
 
 class _BikeLoanScreenState extends State<BikeLoanScreen> {
+  
   int currentIndex = 0; // stores the index of the currently selected bike
 
   late PageController bikePageController;
@@ -96,15 +97,22 @@ String _bikeName = "";
 void initState() {
   super.initState();
 
-  // ✅ Start at the first bike
-  currentIndex = 0;
-  selectedBike = bikes.isNotEmpty ? bikes[0] : null;
-
   bikePageController = PageController(
     viewportFraction: 0.7,
-    initialPage: 0, // ✅ first page
+    initialPage: 0,
   );
+
+  // 👇 listen to repository updates
+  bikesRepository.onUpdate = () {
+    setState(() {
+      if (bikes.isNotEmpty && selectedBike == null) {
+        currentIndex = 0;
+        selectedBike = bikes[0];
+      }
+    });
+  };
 }
+
 @override
 void dispose() {
   bikePageController.dispose();
@@ -159,7 +167,8 @@ void dispose() {
     // =========================================================
   // 🔥 NEW: APPLY POPUP (WHATSAPP BRANCH SELECTOR)
   // =========================================================
-  void _showApplyPopup() {showModalBottomSheet(
+  void _showApplyPopup() {
+    showModalBottomSheet(
   context: context,
 
   // 🔥 important for long branch list
@@ -340,7 +349,8 @@ void dispose() {
       ),
     ));
   },
-);}
+);
+}
 
   // ================================
   // UI
@@ -488,6 +498,12 @@ void dispose() {
                       Image.asset(
                       bike.imageUrl,
                       fit: BoxFit.contain,
+                      gaplessPlayback: true,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child: Icon(Icons.image_not_supported, size: 40),
+                        );
+                      },
                     ),
 
                       Container(
@@ -538,6 +554,7 @@ void dispose() {
               child: DropdownButton<Bike>(
                 isExpanded: true,
                 underline: const SizedBox(),
+                dropdownColor: Colors.white,
                 hint: Text(
                   "Choose a bike",
                   style: TextStyle(

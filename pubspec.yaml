@@ -42,7 +42,18 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/assets/bikes/
+    - lib/assets/bikes/boxer_alloy_wheel.png
+    - lib/assets/bikes/bajaj_boxer.png
+    - lib/assets/bikes/ct_23.png
+    - lib/assets/bikes/haojue_eg.png
+    - lib/assets/bikes/haojue_XPRESSS.png
+    - lib/assets/bikes/haojue_express_plus125cc.png
+    - lib/assets/bikes/honda_110.png
+    - lib/assets/bikes/honda_125.png
+    - lib/assets/bikes/kevla_125.png
+    - lib/assets/bikes/tvs_star_hlx125.png
+    - lib/assets/bikes/tvs_star_hlx125_5g.png
+    - lib/assets/bikes/tvs_star_hlx_100CC.png
     - lib/assets/icon/app_icon.png
     - lib/assets/icon/whatsapp.png
     - lib/assets/icon/pureflow_logo.png

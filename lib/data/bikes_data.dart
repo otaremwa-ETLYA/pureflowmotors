@@ -6,9 +6,10 @@ class BikesRepository {
   final DatabaseReference db = FirebaseDatabase.instance.ref("bikeLoans");
 
   List<Bike> _bikes = [];
-
+  Function()? onUpdate;
   /// Getter for UI
   List<Bike> get bikes => _bikes;
+  
 
   /// Map bike name → image path
   final Map<String, String> _bikeImages = {
@@ -32,9 +33,14 @@ class BikesRepository {
     db.onValue.listen((event) {
       final value = event.snapshot.value;
       if (value == null) {
-        _bikes = [];
-        return;
+      _bikes = [];
+
+      if (onUpdate != null) {
+        onUpdate!();
       }
+
+      return;
+    }
 
       final data = _convertToMap(value) as Map<String, dynamic>;
 
@@ -83,6 +89,10 @@ class BikesRepository {
       });
 
       _bikes = loadedBikes;
+
+      if (onUpdate != null) {
+        onUpdate!();
+      }
     });
   }
 
