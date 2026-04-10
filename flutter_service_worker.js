@@ -3,18 +3,16 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "c9a5833ad247031971e87dc693dfb6a8",
-"assets/AssetManifest.bin.json": "c0092626519a84ff0491986b4055f482",
-"assets/AssetManifest.json": "0552dfb792efaf20a289428c06040c82",
+const RESOURCES = {"assets/AssetManifest.bin": "d18b58c2a4ca6cb853e4dc221abc40cc",
+"assets/AssetManifest.bin.json": "1b6f9e5a4381407d5d568a378776b16f",
+"assets/AssetManifest.json": "d71abce0750485ad2af62b6b18d4b084",
 "assets/FontManifest.json": "0178be171a43605316bcc854a778d01f",
-"assets/fonts/MaterialIcons-Regular.otf": "94de1797a0e2b7f3be6b10da84de0006",
-"assets/lib/assets/bikes/bajaj_boxer.png": "6462f712e2cd137ceb17d816ecbe0625",
-"assets/lib/assets/bikes/bajaj_boxerr.png": "96a17f1e7f8d0dcab7c672fc59c2dbc1",
+"assets/fonts/MaterialIcons-Regular.otf": "bb872d1948f14e9026493f08c6a21d58",
+"assets/lib/assets/bikes/bajaj_boxer.png": "2f355a2f7de5d25a8d968209cc9688c2",
 "assets/lib/assets/bikes/boxer_alloy_wheel.png": "615758d6f11595fee8b1a01ad547b97f",
 "assets/lib/assets/bikes/ct_23.png": "16fafc06b8bf5ecc44ab188242fad40a",
 "assets/lib/assets/bikes/haojue_eg.png": "fcfd91a5dc6ac517cbe64e85da4a4443",
 "assets/lib/assets/bikes/haojue_express_plus125cc.png": "38a428733c9aae05e4d06c05df5ca1c9",
-"assets/lib/assets/bikes/haojue_XPRESs.png": "38a428733c9aae05e4d06c05df5ca1c9",
 "assets/lib/assets/bikes/haojue_XPRESSS.png": "3d50fa62e50b19fe8991cf1fdc59ebfc",
 "assets/lib/assets/bikes/honda_110.png": "57adc9d1c4457388b8659b94a001f79d",
 "assets/lib/assets/bikes/honda_125.png": "54e9df608250b0c1050b62659603fc6c",
@@ -48,7 +46,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "c9a5833ad247031971e87dc693dfb6a8
 "favicon.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "faviconn.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "83d881c1dbb6d6bcd6b42e274605b69c",
-"flutter_bootstrap.js": "a07424ed2ebe6992d16bbf2c478ea75e",
+"flutter_bootstrap.js": "7410755ed6f3efdf2f9cfda8225046fd",
 "icons/Icon-192.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "icons/Icon-1922.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "6fca841c69f44eeee61d5ec7d15637bf",
@@ -57,7 +55,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "c9a5833ad247031971e87dc693dfb6a8
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "f3cb4b1e82afb6b6e57acab755f02beb",
 "/": "f3cb4b1e82afb6b6e57acab755f02beb",
-"main.dart.js": "c25782817717578d7f6383356bdffea6",
+"main.dart.js": "ea8ed672d1a4d3c3c117dbd3252d222c",
 "manifest.json": "ba56bd2e35e726509c4637b412b5c96e",
 "version.json": "59c8f5211bb175d574c68b3a9c7ed593"};
 // The application shell files that are downloaded before a service worker can
