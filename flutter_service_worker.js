@@ -9,8 +9,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "90e13cf12c9677da976c6767ca1ce6fa
 "assets/FontManifest.json": "0178be171a43605316bcc854a778d01f",
 "assets/fonts/MaterialIcons-Regular.otf": "af41d801cf2d1ded149e72502fd83703",
 "assets/lib/assets/bikes/bajaj_boxer.png": "2f355a2f7de5d25a8d968209cc9688c2",
-"assets/lib/assets/bikes/boxer_alloy_wheeel.png": "b7635d49c2cab05b753390ad9199f351",
-"assets/lib/assets/bikes/ct_223.png": "af38704580986b61b87392418cf5007a",
+"assets/lib/assets/bikes/boxer_alloy_wheeel.png": "c009b830451bcb16c8c5ee371c33eab5",
+"assets/lib/assets/bikes/ct_223.png": "d352f3e72343efa8fb63d7a2912beb55",
 "assets/lib/assets/bikes/haojue_eg.png": "fcfd91a5dc6ac517cbe64e85da4a4443",
 "assets/lib/assets/bikes/haojue_express_plus125cc.png": "38a428733c9aae05e4d06c05df5ca1c9",
 "assets/lib/assets/bikes/haojue_XPRESSS.png": "3d50fa62e50b19fe8991cf1fdc59ebfc",
@@ -46,7 +46,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "90e13cf12c9677da976c6767ca1ce6fa
 "favicon.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "faviconn.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "83d881c1dbb6d6bcd6b42e274605b69c",
-"flutter_bootstrap.js": "56e01315f14743c4cf409fa5c447acfb",
+"flutter_bootstrap.js": "ab4d3994b228430b0f160a1f63cea4b9",
 "icons/Icon-192.png": "6fca841c69f44eeee61d5ec7d15637bf",
 "icons/Icon-1922.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "6fca841c69f44eeee61d5ec7d15637bf",
@@ -55,7 +55,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "90e13cf12c9677da976c6767ca1ce6fa
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "f3cb4b1e82afb6b6e57acab755f02beb",
 "/": "f3cb4b1e82afb6b6e57acab755f02beb",
-"main.dart.js": "dce148958b5d31d933572688f15fde21",
+"main.dart.js": "7bd5f89b1ce2e9ca5bfaba157debe78c",
 "manifest.json": "ba56bd2e35e726509c4637b412b5c96e",
 "version.json": "59c8f5211bb175d574c68b3a9c7ed593"};
 // The application shell files that are downloaded before a service worker can
